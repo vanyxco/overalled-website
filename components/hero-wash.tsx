@@ -21,7 +21,7 @@ export function HeroWash() {
         current="residential"
         kicker="Serving Texas"
         kickerHref="#service-area"
-        kickerClassName="text-orange"
+        kickerClassName="text-orange-hot"
         heading="h1"
         title={
           <>
@@ -143,14 +143,14 @@ function HeroCopy({
       <div className="w-full max-w-3xl">
         <p
           id={Heading === "h1" ? "hero-kicker" : undefined}
-          className="hero-shade label"
+          className="label"
         >
           {kickerHref ? (
             <a
               href={kickerHref}
               className={cn(
                 kickerClassName,
-                "inline-block py-1 underline decoration-current/40 underline-offset-[0.35em] transition-colors hover:text-orange-hot hover:decoration-orange-hot",
+                "inline-block py-1 underline decoration-current/40 underline-offset-[0.35em] transition-colors hover:text-white hover:decoration-white",
               )}
             >
               {kicker}
