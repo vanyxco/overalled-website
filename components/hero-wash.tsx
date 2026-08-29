@@ -143,7 +143,7 @@ function HeroCopy({
       <div className="w-full max-w-3xl">
         <p
           id={Heading === "h1" ? "hero-kicker" : undefined}
-          className="label"
+          className="hero-shade label"
         >
           {kickerHref ? (
             <a
@@ -159,7 +159,7 @@ function HeroCopy({
             <span className={kickerClassName}>{kicker}</span>
           )}
         </p>
-        <Heading className="display mt-5 text-[clamp(1.7rem,6.8vw,3.75rem)]">
+        <Heading className="hero-shade display mt-5 text-[clamp(1.7rem,6.8vw,3.75rem)]">
           {title}
         </Heading>
         <p className="hero-glass mx-auto mt-6 max-w-xl px-4 py-4 text-lg leading-relaxed text-white/90 sm:px-5 sm:py-5 md:px-6 md:text-xl">
