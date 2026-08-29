@@ -25,10 +25,10 @@ export function HeroWash() {
         heading="h1"
         title={
           <>
-            <span className="max-md:block">
+            <span className="max-md:mb-3 max-md:block">
               <em className="mark-word">Pressure Washing</em>
             </span>
-            <br />
+            <br className="max-md:hidden" />
             <span className="md:whitespace-nowrap">that restores what</span>
             <br />
             <span className="md:whitespace-nowrap">
