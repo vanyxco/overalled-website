@@ -5,9 +5,9 @@ import { motion } from "motion/react";
 import type { CSSProperties } from "react";
 
 type Particle = {
-  top: string;
   delay: string;
   duration: string;
+  top: string;
   width: number;
   height: number;
   drift: number;
@@ -15,21 +15,16 @@ type Particle = {
 
 type ParticleStyle = CSSProperties & { "--drift": string };
 
-/** Clustered at the nozzle, a few splash-backs along the wet edge. */
+/** Leave the painted nozzle and travel along the lance. */
 const PARTICLES: Particle[] = [
-  { top: "69%", delay: "0s", duration: "0.36s", width: 6, height: 2, drift: 8 },
-  { top: "70.5%", delay: "0.08s", duration: "0.4s", width: 4, height: 3, drift: 12 },
-  { top: "72%", delay: "0.16s", duration: "0.32s", width: 8, height: 2, drift: 6 },
-  { top: "73.5%", delay: "0.05s", duration: "0.38s", width: 5, height: 2, drift: 14 },
-  { top: "75%", delay: "0.22s", duration: "0.34s", width: 3, height: 3, drift: 18 },
-  { top: "67.5%", delay: "0.12s", duration: "0.44s", width: 3, height: 2, drift: 20 },
-  { top: "76.5%", delay: "0.28s", duration: "0.42s", width: 4, height: 2, drift: 16 },
-  { top: "65%", delay: "0.34s", duration: "0.5s", width: 2, height: 2, drift: 24 },
-  { top: "79%", delay: "0.18s", duration: "0.48s", width: 2, height: 3, drift: 22 },
-  { top: "62%", delay: "0.4s", duration: "0.58s", width: 2, height: 2, drift: 28 },
-  { top: "82%", delay: "0.1s", duration: "0.54s", width: 2, height: 2, drift: 26 },
-  { top: "85%", delay: "0.46s", duration: "0.66s", width: 1, height: 2, drift: 32 },
-  { top: "88%", delay: "0.26s", duration: "0.62s", width: 2, height: 1, drift: 30 },
+  { delay: "0s", duration: "0.38s", top: "-3px", width: 7, height: 2, drift: 4 },
+  { delay: "0.07s", duration: "0.42s", top: "1px", width: 5, height: 2, drift: 8 },
+  { delay: "0.14s", duration: "0.34s", top: "-1px", width: 8, height: 2, drift: -3 },
+  { delay: "0.04s", duration: "0.4s", top: "4px", width: 4, height: 2, drift: 10 },
+  { delay: "0.2s", duration: "0.36s", top: "-5px", width: 3, height: 2, drift: -8 },
+  { delay: "0.11s", duration: "0.46s", top: "6px", width: 3, height: 2, drift: 12 },
+  { delay: "0.26s", duration: "0.44s", top: "-7px", width: 2, height: 2, drift: -10 },
+  { delay: "0.18s", duration: "0.5s", top: "8px", width: 2, height: 2, drift: 14 },
 ];
 
 export function WashLance({
@@ -40,29 +35,31 @@ export function WashLance({
   const inner = (
     <>
       <span className="wash-glow" />
-      <span className="wash-jet" />
-      <span className="wash-stream" />
-      <span className="pointer-events-none absolute inset-y-0 left-0 w-32 overflow-visible">
-        {PARTICLES.map((particle, index) => (
-          <span
-            key={`${particle.top}-${index}`}
-            className="wash-particle"
-            style={
-              {
-                top: particle.top,
-                width: particle.width,
-                height: particle.height,
-                animationDelay: particle.delay,
-                animationDuration: particle.duration,
-                "--drift": `${particle.drift}px`,
-              } satisfies ParticleStyle
-            }
-          />
-        ))}
-      </span>
-      <span className="pointer-events-none absolute top-[72%] right-[calc(100%+2.25rem)] flex origin-right -translate-y-1/2 items-center -rotate-12">
-        <WandMark />
-        <span className="wash-bloom" />
+      <span className="wash-rig">
+        <span className="wash-wand-wrap">
+          <WandMark />
+          <span className="wash-nozzle">
+            <span className="wash-bloom" />
+            <span className="wash-stream" />
+            <span className="wash-jet" />
+            {PARTICLES.map((particle, index) => (
+              <span
+                key={`${particle.delay}-${index}`}
+                className="wash-particle"
+                style={
+                  {
+                    top: particle.top,
+                    width: particle.width,
+                    height: particle.height,
+                    animationDelay: particle.delay,
+                    animationDuration: particle.duration,
+                    "--drift": `${particle.drift}px`,
+                  } satisfies ParticleStyle
+                }
+              />
+            ))}
+          </span>
+        </span>
       </span>
     </>
   );

@@ -12,7 +12,7 @@ export function FaqList({
 }) {
   return (
     <section id={id} className="scroll-mt-28 bg-canvas">
-      <div className="mx-auto max-w-3xl px-5 py-20 md:px-8 md:py-28">
+      <div className="mx-auto max-w-3xl px-5 py-16 md:px-8 md:py-28">
         <p className="label text-orange">Answers</p>
         <span className="rule mt-5" aria-hidden />
         <h2 className="display mt-6 text-4xl text-navy md:text-5xl">{heading}</h2>

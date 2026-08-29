@@ -243,29 +243,71 @@ export const services: Service[] = [
   {
     slug: "commercial",
     name: "Commercial Properties",
-    short: "Storefronts, lots, and walkways on your schedule.",
+    short: "Lots, buildings, dumpster pads — on your clock.",
     method: "Both",
     hero: "/services/commercial.jpg",
     heroAlt: "Clean storefront walk and parking approach at a commercial plaza",
     heroClass: "object-[center_65%]",
     summary:
-      "Walkways, dumpster pads, brick, and storefront concrete — scheduled so the work does not interrupt customers.",
-    body: "Banks, shops, and offices around Lake Houston already know the difference a clean approach makes. We work early, we work efficiently, and we leave the property looking like the business behind it is well run.",
-    surfaces: ["Storefront concrete", "Brick", "Dumpster pads", "Parking approaches"],
+      "Walkways, dumpster pads, brick, parking lots, and storefront concrete — scheduled so the work does not interrupt the day.",
+    body: "Banks, shops, offices, and yards around Lake Houston already know the difference a clean property makes. We wash the lot, the walk, the dumpster pad, the brick, and the approach. Early starts are normal. We leave it looking like the business behind it is well run. Trucks and equipment are a separate job — same standard, same clock.",
+    surfaces: [
+      "Storefront concrete",
+      "Brick & stone",
+      "Dumpster pads",
+      "Parking lots",
+      "Walkways",
+    ],
     seoTitle: "Commercial Pressure Washing | Lake Houston",
     seoDescription:
-      "Storefront, lot, and walkway washing for Lake Houston businesses. Scheduled around your hours — the same standard as a house wash, including local banks.",
-    related: ["driveways", "house-wash"],
+      "Commercial pressure washing in Crosby, Huffman, Kingwood, and Lake Houston. Lots, dumpster pads, brick, storefronts, and walkways — scheduled around your hours.",
+    related: ["fleet-equipment", "driveways", "house-wash"],
     faqs: [
       {
         question: "Can you wash a storefront before we open?",
         answer:
-          "Yes. Commercial work is scheduled so customers are not walking through the wash. Early starts are normal for banks, shops, and offices around Lake Houston.",
+          "Yes. Commercial work is scheduled so customers are not walking through the wash. Early starts are normal for banks, shops, offices, and yards around Lake Houston.",
       },
       {
-        question: "Do you wash dumpster pads and parking approaches?",
+        question: "What commercial surfaces do you wash?",
         answer:
-          "Yes. Dumpster pads, storefront walks, brick, and parking approaches are regular commercial work. We quote from photos and the address like a house wash.",
+          "Dumpster pads, parking lots, storefront walks, brick, and the approach. Fleet trucks and equipment are a separate service. We quote from photos and the address like a house wash.",
+      },
+    ],
+  },
+  {
+    slug: "fleet-equipment",
+    name: "Fleet & Equipment",
+    short: "Work trucks, trailers, and the machines that earn.",
+    method: "Both",
+    hero: "/services/fleet-equipment.jpg",
+    heroAlt:
+      "Freshly washed work trucks, trailer, and skid steer on a clean concrete lot",
+    heroClass: "object-[center_60%]",
+    summary:
+      "Trucks, vans, trailers, and heavy equipment washed on your lot — scheduled so the fleet is ready before the crew is.",
+    body: "A dirty truck is the first thing a customer sees when you pull up. Oil film, road grime, and Gulf Coast pollen sit on boxes, trailers, and iron the same way they sit on a driveway. We wash fleets and equipment on your lot, on your clock. Painted bodies get a controlled pass so decals stay put. Heavy iron gets the pressure it needs. Quote from photos and a count of what rolls.",
+    surfaces: [
+      "Work trucks & vans",
+      "Box trucks",
+      "Trailers",
+      "Heavy equipment",
+      "Construction iron",
+    ],
+    seoTitle: "Fleet & Equipment Washing | Lake Houston",
+    seoDescription:
+      "Fleet and equipment washing in Crosby, Huffman, Kingwood, and Lake Houston. Work trucks, trailers, and heavy equipment — washed on your lot, on your clock.",
+    related: ["commercial", "driveways"],
+    faqs: [
+      {
+        question: "Do you come to our shop or job site?",
+        answer:
+          "Yes. Fleet and equipment washes happen on your lot. Send photos, a count of what rolls, and when the crew is off the yard. We quote from that and schedule around your hours.",
+      },
+      {
+        question: "Will washing take the decals or paint off?",
+        answer:
+          "Painted bodies and wraps get a controlled pass — not the pressure we put on a dumpster pad. Tell us what is vinyl-wrapped or freshly painted so we match the method.",
       },
     ],
   },

@@ -3,6 +3,7 @@ import { PageHero } from "@/components/page-hero";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbSchema, pageMetadata, webPageSchema } from "@/lib/seo";
 import { site } from "@/lib/site";
+import { telHref } from "@/lib/utils";
 
 const title = "Privacy Policy | Overalled Pressure Washing";
 const description = `How ${site.legalName} uses quote-form information. We email what you submit to ${site.email}. We do not sell it.`;
@@ -50,7 +51,14 @@ export default function PrivacyPage() {
         </p>
         <h2 className="display mt-10 text-2xl text-navy">Questions</h2>
         <p className="mt-4">
-          {site.email} or {site.phone}.
+          <a href={`mailto:${site.email}`} className="nav-link text-navy">
+            {site.email}
+          </a>{" "}
+          or{" "}
+          <a href={telHref(site.phone)} className="nav-link text-navy">
+            {site.phone}
+          </a>
+          .
         </p>
       </article>
     </main>

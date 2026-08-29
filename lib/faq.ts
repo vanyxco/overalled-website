@@ -41,7 +41,7 @@ export const servicesFaqs: Faq[] = [
   {
     question: "Which surfaces do you wash?",
     answer:
-      "House siding and brick, roofs, vinyl, driveways and walkways, decks and patios, fences, and commercial storefronts, lots, and dumpster pads.",
+      "House siding and brick, roofs, vinyl, driveways and walkways, decks and patios, fences, commercial lots, dumpster pads, and storefronts, plus fleet trucks and equipment.",
   },
 ];
 

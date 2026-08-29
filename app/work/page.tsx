@@ -56,10 +56,12 @@ export default function WorkPage() {
         crumbs={crumbs}
       />
       <section className="bg-paper">
-        <div className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
+        <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-28">
           <WorkFeed posts={workPosts} variant="feed" />
           <a
             href={site.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
             className="nav-link label mt-16 inline-block text-orange"
           >
             Facebook page

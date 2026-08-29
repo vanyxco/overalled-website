@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo_Black, Barlow, Rowdies } from "next/font/google";
+import { Archivo, Archivo_Black, Barlow, Fraunces } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { JsonLd } from "@/components/json-ld";
@@ -22,10 +22,19 @@ const barlow = Barlow({
   display: "swap",
 });
 
-const rowdies = Rowdies({
+const archivo = Archivo({
   subsets: ["latin"],
-  weight: "700",
-  variable: "--font-rowdies",
+  weight: "800",
+  style: "italic",
+  variable: "--font-archivo",
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  weight: "600",
+  style: "italic",
+  variable: "--font-fraunces",
   display: "swap",
 });
 
@@ -55,6 +64,7 @@ export const metadata: Metadata = {
     "roof soft wash Huffman",
     "driveway cleaning Humble",
     "commercial pressure washing Atascocita",
+    "fleet washing Lake Houston",
     "Overalled Pressure Washing",
   ],
   referrer: "origin-when-cross-origin",
@@ -100,9 +110,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en-US"
-      className={`${archivoBlack.variable} ${barlow.variable} ${rowdies.variable} h-full antialiased`}
+      className={`${archivoBlack.variable} ${archivo.variable} ${barlow.variable} ${fraunces.variable} h-full overflow-x-clip antialiased`}
     >
-      <body className="min-h-full bg-paper font-body text-ink">
+      <body className="min-h-full overflow-x-clip bg-paper font-body text-ink">
         <JsonLd data={graph([])} />
         <a
           href="#main"

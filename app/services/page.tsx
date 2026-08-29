@@ -18,7 +18,7 @@ import { cn } from "@/lib/utils";
 
 const title = "Pressure Washing Services | House, Roof & Driveways";
 const description =
-  "House wash, roof soft-wash, vinyl siding, driveways, decks, fences, and commercial storefronts in Crosby, Huffman, Kingwood, Humble, and Lake Houston.";
+  "House wash, roof soft-wash, vinyl, driveways, decks, fences, commercial properties, and fleet washing in Crosby, Huffman, Kingwood, Humble, and Lake Houston.";
 const crumbs = [
   { name: "Home", path: "/" },
   { name: "Services", path: "/services" },
@@ -62,7 +62,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Services"
         title="The right pressure. The right chemistry. Every surface."
-        lede="Soft wash where high pressure would do damage. Surface cleaners where concrete needs an even finish. House, roof, vinyl, driveway, deck, fence, and commercial work across Lake Houston."
+        lede="Soft wash where high pressure would do damage. Surface cleaners where concrete needs an even finish. House, roof, vinyl, driveway, deck, fence, commercial property, and fleet work across Lake Houston."
         crumbs={crumbs}
       />
       <section className="bg-paper">
@@ -78,7 +78,7 @@ export default function ServicesPage() {
             wand on everything.
           </p>
         </div>
-        <div className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
+        <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-28">
           <ul className="grid gap-6 md:grid-cols-2 md:gap-8">
             {services.map((service) => (
               <li

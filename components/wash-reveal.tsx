@@ -1,6 +1,6 @@
 "use client";
 
-import { type ReactNode, useEffect, useRef } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 import {
   animate,
   motion,
@@ -25,8 +25,10 @@ export function WashReveal({
   fill?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
+  const reducePref = useReducedMotion();
+  const [alive, setAlive] = useState(false);
   const inView = useInView(ref, { once: true, amount: 0.12, margin: "0px 0px -8% 0px" });
+  const reduce = Boolean(alive && reducePref);
   const progress = useMotionValue(0);
   const clipPath = useTransform(
     progress,
@@ -34,6 +36,10 @@ export function WashReveal({
   );
   const lineLeft = useTransform(progress, (value) => `${value * 100}%`);
   const lineOpacity = useTransform(progress, [0, 0.05, 0.88, 1], [0, 1, 1, 0]);
+
+  useEffect(() => {
+    setAlive(true);
+  }, []);
 
   useEffect(() => {
     if (reduce) {

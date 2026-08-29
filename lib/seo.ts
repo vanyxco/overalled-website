@@ -206,7 +206,12 @@ export function localBusinessSchema() {
     url: site.domain,
     telephone: site.phoneE164,
     email: site.email,
-    image: [logoUrl, absoluteUrl("/work/facebook/01.jpg")],
+    image: [
+      logoUrl,
+      absoluteUrl("/work/facebook/01.jpg"),
+      absoluteUrl("/about/crew.jpg"),
+      absoluteUrl(site.ownerPhoto),
+    ],
     logo: {
       "@type": "ImageObject",
       url: logoUrl,
@@ -233,6 +238,8 @@ export function localBusinessSchema() {
       "Driveway cleaning",
       "Vinyl siding cleaning",
       "Commercial pressure washing",
+      "Fleet washing",
+      "Equipment washing",
     ],
     address: {
       "@type": "PostalAddress",

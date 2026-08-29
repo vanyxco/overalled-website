@@ -107,6 +107,8 @@ function FeedHeader() {
       </div>
       <a
         href={site.facebook}
+        target="_blank"
+        rel="noopener noreferrer"
         className="btn label inline-flex min-h-11 items-center bg-blue px-8 py-4 text-white transition-colors hover:bg-navy-2"
       >
         Follow on Facebook
@@ -222,7 +224,12 @@ function WorkPostCard({
             <p className="label text-mute">{post.photos.length} photos</p>
           ) : null}
           <PostCaption caption={post.caption} />
-          <a href={post.href} className="nav-link label mt-4 inline-block text-orange">
+          <a
+            href={post.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-link label mt-4 inline-block text-orange"
+          >
             View on Facebook
           </a>
         </figcaption>
@@ -341,7 +348,7 @@ function WorkLightbox({
             </button>
           </div>
         </div>
-        <div className="relative mx-auto w-full max-w-6xl flex-1 px-5 md:px-8">
+        <div className="relative mx-auto w-full max-w-6xl flex-1 px-5 pb-10 md:px-8">
           <div className="relative aspect-4/3 w-full overflow-hidden rounded-xl bg-navy-2 md:aspect-16/10">
             <Image
               src={photo.src}
@@ -357,6 +364,8 @@ function WorkLightbox({
           </p>
           <a
             href={photo.href}
+            target="_blank"
+            rel="noopener noreferrer"
             className="nav-link label mt-4 mb-10 inline-block text-orange-hot"
           >
             View on Facebook

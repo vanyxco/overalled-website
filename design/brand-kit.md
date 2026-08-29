@@ -36,11 +36,11 @@ On navy, secondary copy is at least 85% white (`text-white/85`). Never fade body
 
 ## Typography
 
-This site is read by neighbors, many of them older. Type is built for that first — but it has to feel like the lockup: blocky, athletic, industrial sans. No serif display. No script wordmark (the logo is the wordmark).
+This site is read by neighbors, many of them older. Type is built for that first — but it has to feel like the lockup: blocky, athletic, industrial sans. No serif display headlines. No script wordmark (the logo is the wordmark). The one serif exception is `years` in the residential hero.
 
 - Display: Archivo Black. Headlines only — extra-bold poster sans, closer to the OVERALLED lockup than a condensed ticker. Line-height 1.08. Tracking -0.02em. Sentence case. The face is already black; do not faux-bold it.
 - Body / UI: Barlow (400 body, 600 labels). Default face for everything you have to actually read.
-- Accent word: Rowdies 700. Only `Pressure Washing` in the residential hero — water-blue, same athletic/work-poster family as the lockup, not a serif. Step numerals stay Archivo Black with an 8° lean. Hero kicker `Serving Texas` is orange and jumps to the city list.
+- Accent word: Archivo 800 italic. Only `Pressure Washing` in the residential hero — water-blue, the same italic bold sans as the lockup’s PRESSURE WASHING banner. `years` in that line is Fraunces italic 600, inheriting the headline color (white on the hero). Step numerals stay Archivo Black with an 8° lean. Hero kicker `Serving Texas` is orange and jumps to the city list.
 - Labels: Barlow 600, 16px, 0.06em tracking, **sentence case**. No 9–12px all-caps.
 
 Scale: 16 / 18 / 20 / 22 / 28 / 36 / 48 / 64 / 84.
@@ -53,7 +53,7 @@ Floor: body 18px, UI 16px, buttons 18px.
 - Radius: 24px surfaces (`--radius-surface`), 999 buttons/chips (`--radius-control`). Prefer round over sharp — overalls have rounded pockets; the square mark can sit in a circle.
 - Shadows: none on navy cards. Light cards use a 1px `line` edge, not a drop shadow.
 - Type on photography: a rounded (`--radius-surface`) glass panel — navy at ~48% with backdrop blur and a blue/white hairline. Copy lives in the panel; hero CTAs sit below it, not inside it. Do not wash the whole hero in a scrim.
-- Hero wash edge: a pressure-washer lance sits left of the wash. White jet and droplets leave the nozzle; the dirt/clean split is a wide, quiet wet band (~10vw before the front, ~16vw after) — not a hairline. Residential: as copy fades, the square mark fades in. Commercial: no Residential/Commercial pills; “Trusted Experience” fades in as that copy leaves. Reduced motion: static split, no lance travel, no lockup crossfade, no particle animation.
+- Hero wash edge: a pressure-washer lance sits left of the wash. Jet, stream, and droplets leave the nozzle along the lance — not a full-height curtain. The dirt/clean split is a quiet wet band (~6vw before the front, ~8vw after). Sheen stays on the driveway band. Residential: as copy fades, the square mark fades in. Commercial: no Residential/Commercial pills; “Trusted Experience” fades in as that copy leaves. Reduced motion: static split, no lance travel, no lockup crossfade, no particle animation.
 - Hairline: 1px orange (`--brass`) as the only metal — under eyebrows, never as a fat bar. The lockup is a blue field with orange overalls; buttons follow the field, not the overalls.
 - Image hover: scale 1.04 over 700ms `cubic-bezier(0.22, 1, 0.36, 1)`.
 - Form fields: bottom border only, transparent fill.

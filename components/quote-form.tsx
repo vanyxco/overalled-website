@@ -20,7 +20,10 @@ export function QuoteForm() {
 
   if (state.status === "success") {
     return (
-      <div className="rounded-xl border border-brass/50 bg-canvas px-8 py-12">
+      <div
+        role="status"
+        className="rounded-xl border border-brass/50 bg-canvas px-8 py-12"
+      >
         <p className="label text-orange">Sent</p>
         <p className="display mt-3 text-3xl text-navy">Request received.</p>
         <p className="mt-3 max-w-md leading-relaxed text-mute">
@@ -53,6 +56,8 @@ export function QuoteForm() {
           label="Phone"
           name="phone"
           type="tel"
+          inputMode="tel"
+          maxLength={32}
           error={state.fieldErrors?.phone}
           autoComplete="tel"
         />
@@ -61,6 +66,7 @@ export function QuoteForm() {
         label="Email"
         name="email"
         type="email"
+        maxLength={254}
         error={state.fieldErrors?.email}
         autoComplete="email"
       />
@@ -79,7 +85,13 @@ export function QuoteForm() {
         />
       </div>
 
-      <fieldset>
+      <fieldset
+        aria-required="true"
+        aria-invalid={state.fieldErrors?.services ? true : undefined}
+        aria-describedby={
+          state.fieldErrors?.services ? "quote-services-error" : undefined
+        }
+      >
         <legend className="label text-mute">What needs washing</legend>
         <div className="mt-3 grid gap-2 sm:grid-cols-2">
           {services.map((service) => (
@@ -98,7 +110,9 @@ export function QuoteForm() {
           ))}
         </div>
         {state.fieldErrors?.services ? (
-          <p className="mt-2 text-danger">{state.fieldErrors.services[0]}</p>
+          <p id="quote-services-error" className="mt-2 text-danger">
+            {state.fieldErrors.services[0]}
+          </p>
         ) : null}
       </fieldset>
 
@@ -107,6 +121,7 @@ export function QuoteForm() {
         <textarea
           name="message"
           rows={4}
+          maxLength={2000}
           className={field}
           placeholder="Square footage, photos coming, HOA timing…"
         />
@@ -120,7 +135,7 @@ export function QuoteForm() {
         type="submit"
         disabled={pending}
         className={cn(
-          "btn label bg-blue px-8 py-4 text-lg text-white transition-colors hover:bg-navy-2",
+          "btn label mb-16 bg-blue px-8 py-4 text-lg text-white transition-colors hover:bg-navy-2 md:mb-0",
           pending && "opacity-70",
         )}
       >
@@ -136,24 +151,37 @@ function Field({
   type = "text",
   error,
   autoComplete,
+  inputMode,
+  maxLength,
 }: {
   label: string;
   name: string;
   type?: string;
   error?: string[];
   autoComplete?: string;
+  inputMode?: "tel" | "email" | "text";
+  maxLength?: number;
 }) {
+  const errorId = `${name}-error`;
   return (
     <label className="block">
       <span className="label text-mute">{label}</span>
       <input
         name={name}
         type={type}
+        inputMode={inputMode}
+        maxLength={maxLength ?? 120}
         autoComplete={autoComplete}
         className={field}
         required={name !== "message"}
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error ? errorId : undefined}
       />
-      {error ? <p className="mt-1 text-danger">{error[0]}</p> : null}
+      {error ? (
+        <p id={errorId} className="mt-1 text-danger">
+          {error[0]}
+        </p>
+      ) : null}
     </label>
   );
 }

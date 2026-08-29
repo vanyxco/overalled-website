@@ -10,7 +10,7 @@ function block(title: string, lines: string[]) {
 export function llmsTxt(): string {
   const pages = [
     `- [Home](${site.domain}/): ${defaultDescription}`,
-    `- [Services](${site.domain}/services): House wash, roof soft-wash, vinyl, driveways, decks, fences, commercial`,
+    `- [Services](${site.domain}/services): House wash, roof soft-wash, vinyl, driveways, decks, fences, commercial, fleet and equipment`,
     ...services.map(
       (service) =>
         `- [${service.name}](${site.domain}/services/${service.slug}): ${service.seoDescription}`,

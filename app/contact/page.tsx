@@ -80,7 +80,12 @@ export default function ContactPage() {
               </div>
               <div>
                 <p className="label text-mute">Facebook</p>
-                <a href={site.facebook} className="mt-2 block text-navy">
+                <a
+                  href={site.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 block text-navy"
+                >
                   {site.legalName}
                 </a>
               </div>

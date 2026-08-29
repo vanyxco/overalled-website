@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { type ReactNode, useRef } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 import {
   motion,
   useReducedMotion,
@@ -25,16 +25,18 @@ export function HeroWash() {
         heading="h1"
         title={
           <>
-            <span className="whitespace-nowrap">
+            <span className="max-md:block">
               <em className="mark-word">Pressure Washing</em>
             </span>
             <br />
-            <span className="whitespace-nowrap">that restores what</span>
+            <span className="md:whitespace-nowrap">that restores what</span>
             <br />
-            <span className="whitespace-nowrap">the years left behind.</span>
+            <span className="md:whitespace-nowrap">
+              the <em className="years-word">years</em> left behind.
+            </span>
           </>
         }
-        body="Soft wash for houses and roofs. Surface cleaning for concrete. 100% recommend across 37 reviews."
+        body="Soft wash on the house and roof. A surface cleaner on the drive. 100% recommend across 37 reviews."
         hint="Scroll to wash the drive"
         dirtySrc="/hero/dirty.jpg"
         cleanSrc="/hero/clean.jpg"
@@ -53,10 +55,12 @@ export function HeroWash() {
         heading="h2"
         title={
           <>
-            First impressions get washed too.
+            Lots, buildings,
+            <br />
+            and the fleet.
           </>
         }
-        body="Storefronts, banks, and parking approaches — scheduled around your hours and finished before customers arrive."
+        body="Dumpster pads, parking lots, brick, storefronts, and the trucks and equipment that keep the day moving — scheduled around your hours."
         hint="Scroll to wash the lot"
         dirtySrc="/hero/bank-dirty.jpg"
         cleanSrc="/hero/bank-clean.jpg"
@@ -114,6 +118,72 @@ function ActTabs({
   );
 }
 
+function HeroCopy({
+  Heading,
+  kicker,
+  kickerHref,
+  kickerClassName,
+  title,
+  body,
+  current,
+  showTabs,
+}: {
+  Heading: "h1" | "h2";
+  kicker: string;
+  kickerHref?: string;
+  kickerClassName: string;
+  title: ReactNode;
+  body: string;
+  current: "residential" | "commercial";
+  showTabs: boolean;
+}) {
+  return (
+    <>
+      {showTabs ? <ActTabs current={current} /> : null}
+      <div className="hero-glass w-full max-w-3xl px-4 py-5 sm:px-5 sm:py-6 md:px-10 md:py-9">
+        <p
+          id={Heading === "h1" ? "hero-kicker" : undefined}
+          className="label"
+        >
+          {kickerHref ? (
+            <a
+              href={kickerHref}
+              className={cn(
+                kickerClassName,
+                "inline-block py-1 underline decoration-current/40 underline-offset-[0.35em] transition-colors hover:text-orange-hot hover:decoration-orange-hot",
+              )}
+            >
+              {kicker}
+            </a>
+          ) : (
+            <span className={kickerClassName}>{kicker}</span>
+          )}
+        </p>
+        <Heading className="display mt-5 text-[clamp(1.7rem,6.8vw,3.75rem)]">
+          {title}
+        </Heading>
+        <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/90 md:text-xl">
+          {body}
+        </p>
+      </div>
+      <div className="mt-5 mb-20 flex flex-wrap items-center justify-center gap-3 md:mt-8 md:mb-0">
+        <Link
+          href="/contact"
+          className="btn label bg-blue px-8 py-4 text-lg text-white transition-colors hover:bg-navy-2"
+        >
+          Get a free quote
+        </Link>
+        <a
+          href={telHref(site.phone)}
+          className="btn label hidden border border-white/80 bg-navy/45 px-8 py-4 text-lg text-white backdrop-blur-sm transition-colors hover:border-white hover:bg-navy/60 md:inline-flex"
+        >
+          Call {site.phone}
+        </a>
+      </div>
+    </>
+  );
+}
+
 function ActBreak() {
   return (
     <section
@@ -121,7 +191,7 @@ function ActBreak() {
       className="relative flex min-h-dvh items-center bg-navy text-white"
     >
       <div className="grain" />
-      <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-20 md:grid-cols-12 md:px-8 md:py-24">
+      <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-16 md:grid-cols-12 md:px-8 md:py-24">
         <p className="label text-water md:col-span-3">
           Residential and commercial
         </p>
@@ -133,7 +203,7 @@ function ActBreak() {
             on every property.
           </p>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/90 md:text-xl">
-            Homes, storefronts, and parking lots across Lake Houston. Soft wash
+            Homes, storefronts, lots, and fleets across Lake Houston. Soft wash
             where high pressure would do damage. Surface cleaning where concrete
             needs an even finish.
           </p>
@@ -183,7 +253,9 @@ function WashChapter({
   endWords?: ReactNode;
 }) {
   const ref = useRef<HTMLElement>(null);
-  const reduce = useReducedMotion();
+  const reducePref = useReducedMotion();
+  const [alive, setAlive] = useState(false);
+  const [phone, setPhone] = useState(false);
   const { scrollYProgress } = useScroll({
     target: ref,
     // "end 100%" is the same mapping as "end end", but Motion 13 would
@@ -193,18 +265,37 @@ function WashChapter({
     offset: ["start start", "end 100%"],
   });
 
+  useEffect(() => {
+    setAlive(true);
+    const media = window.matchMedia("(max-width: 767px)");
+    const sync = () => setPhone(media.matches);
+    sync();
+    media.addEventListener("change", sync);
+    return () => media.removeEventListener("change", sync);
+  }, []);
+
+  // First paint matches the server. Motion values, reduced-motion, and
+  // matchMedia are client-only and were hydrating a different tree.
+  const reduce = Boolean(alive && reducePref);
+  const live = alive && !reducePref;
+  const startMask =
+    "linear-gradient(90deg, #000 0%, #000 calc(21% - 6vw), transparent calc(21% + 8vw))";
+  const startLance = "calc(21% + 10px)";
+  const copyClass =
+    "relative z-20 flex h-full flex-col items-center justify-start px-5 pt-28 text-center text-white md:justify-center md:pt-0";
+
   const clipRight = useTransform(
     scrollYProgress,
     [0.04, 0.82, 1],
-    [79, 0, 0],
+    phone ? [48, 0, 0] : [79, 0, 0],
   );
   const washMask = useTransform(clipRight, (value) => {
     const edge = 100 - value;
-    return `linear-gradient(90deg, #000 0%, #000 calc(${edge}% - 10vw), transparent calc(${edge}% + 16vw))`;
+    return `linear-gradient(90deg, #000 0%, #000 calc(${edge}% - 6vw), transparent calc(${edge}% + 8vw))`;
   });
   const lineLeft = useTransform(
     clipRight,
-    (value) => `calc(${100 - value}% + 24px)`,
+    (value) => `calc(${100 - value}% + 10px)`,
   );
   const copyOpacity = useTransform(
     scrollYProgress,
@@ -220,7 +311,7 @@ function WashChapter({
   const hintOpacity = useTransform(scrollYProgress, [0, 0.12, 1], [1, 0, 0]);
 
   return (
-    <section ref={ref} id={id} className="relative h-[240vh] bg-navy">
+    <section ref={ref} id={id} className="relative h-[180vh] bg-navy md:h-[240vh]">
       <div className="sticky top-0 h-dvh overflow-hidden">
         <div className="relative h-full">
           <div className="absolute inset-0">
@@ -233,26 +324,7 @@ function WashChapter({
               className={objectClass}
             />
           </div>
-          {reduce ? (
-            <div
-              className="absolute inset-0"
-              style={{
-                maskImage:
-                  "linear-gradient(90deg, #000 0%, #000 calc(55% - 10vw), transparent calc(55% + 16vw))",
-                WebkitMaskImage:
-                  "linear-gradient(90deg, #000 0%, #000 calc(55% - 10vw), transparent calc(55% + 16vw))",
-              }}
-            >
-              <Image
-                src={cleanSrc}
-                alt=""
-                fill
-                priority={priority}
-                sizes="100vw"
-                className={objectClass}
-              />
-            </div>
-          ) : (
+          {live ? (
             <motion.div
               className="absolute inset-0"
               style={{
@@ -269,17 +341,38 @@ function WashChapter({
                 className={objectClass}
               />
             </motion.div>
+          ) : (
+            <div
+              className="absolute inset-0"
+              style={{
+                maskImage: reduce
+                  ? "linear-gradient(90deg, #000 0%, #000 calc(55% - 6vw), transparent calc(55% + 8vw))"
+                  : startMask,
+                WebkitMaskImage: reduce
+                  ? "linear-gradient(90deg, #000 0%, #000 calc(55% - 6vw), transparent calc(55% + 8vw))"
+                  : startMask,
+              }}
+            >
+              <Image
+                src={cleanSrc}
+                alt={cleanAlt}
+                fill
+                priority={priority}
+                sizes="100vw"
+                className={objectClass}
+              />
+            </div>
           )}
 
-          {reduce ? (
-            <WashLance left="calc(55% + 24px)" />
-          ) : (
+          {live ? (
             <WashLance left={lineLeft} />
+          ) : (
+            <WashLance left={reduce ? "calc(55% + 10px)" : startLance} />
           )}
 
           <div className="grain z-10" />
 
-          {!reduce && showMark ? (
+          {live && showMark ? (
             <motion.div
               className="pointer-events-none absolute inset-0 z-15 flex items-center justify-center"
               style={{ opacity: markOpacity }}
@@ -290,12 +383,12 @@ function WashChapter({
                 alt=""
                 width={448}
                 height={448}
-                className="logo-hero h-auto w-[min(72vw,28rem)]"
+                className="logo-hero h-auto w-[min(52vw,28rem)] md:w-[min(72vw,28rem)]"
               />
             </motion.div>
           ) : null}
 
-          {!reduce && endWords ? (
+          {live && endWords ? (
             <motion.div
               className="pointer-events-none absolute inset-0 z-15 flex items-center justify-center px-5"
               style={{ opacity: markOpacity }}
@@ -305,59 +398,49 @@ function WashChapter({
             </motion.div>
           ) : null}
 
-          <motion.div
-            className="relative z-20 flex h-full flex-col items-center justify-center px-5 text-center text-white"
-            style={reduce ? undefined : { opacity: copyOpacity, y: copyY }}
-          >
-            {showTabs ? <ActTabs current={current} /> : null}
-            <div className="hero-glass w-full max-w-3xl px-5 py-6 md:px-10 md:py-9">
-              <p
-                id={Heading === "h1" ? "hero-kicker" : undefined}
-                className="label"
-              >
-                {kickerHref ? (
-                  <a
-                    href={kickerHref}
-                    className={cn(
-                      kickerClassName,
-                      "inline-block py-1 underline decoration-current/40 underline-offset-[0.35em] transition-colors hover:text-orange-hot hover:decoration-orange-hot",
-                    )}
-                  >
-                    {kicker}
-                  </a>
-                ) : (
-                  <span className={kickerClassName}>{kicker}</span>
-                )}
-              </p>
-              <Heading className="display mt-5 text-[clamp(1.7rem,6.8vw,3.75rem)]">
-                {title}
-              </Heading>
-              <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/90 md:text-xl">
-                {body}
-              </p>
+          {live ? (
+            <motion.div
+              className={copyClass}
+              style={{ opacity: copyOpacity, y: copyY }}
+            >
+              <HeroCopy
+                Heading={Heading}
+                kicker={kicker}
+                kickerHref={kickerHref}
+                kickerClassName={kickerClassName}
+                title={title}
+                body={body}
+                current={current}
+                showTabs={showTabs}
+              />
+            </motion.div>
+          ) : (
+            <div className={copyClass}>
+              <HeroCopy
+                Heading={Heading}
+                kicker={kicker}
+                kickerHref={kickerHref}
+                kickerClassName={kickerClassName}
+                title={title}
+                body={body}
+                current={current}
+                showTabs={showTabs}
+              />
             </div>
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-3 md:mt-8">
-              <Link
-                href="/contact"
-                className="btn label bg-blue px-8 py-4 text-lg text-white transition-colors hover:bg-navy-2"
-              >
-                Get a free quote
-              </Link>
-              <a
-                href={telHref(site.phone)}
-                className="btn label hidden border border-white/80 bg-navy/45 px-8 py-4 text-lg text-white backdrop-blur-sm transition-colors hover:border-white hover:bg-navy/60 md:inline-flex"
-              >
-                Call {site.phone}
-              </a>
-            </div>
-          </motion.div>
+          )}
 
-          <motion.p
-            className="hero-glass label absolute bottom-8 left-1/2 z-20 hidden -translate-x-1/2 px-4 py-2 text-white md:block"
-            style={reduce ? undefined : { opacity: hintOpacity }}
-          >
-            {hint}
-          </motion.p>
+          {live ? (
+            <motion.p
+              className="hero-glass label absolute bottom-8 left-1/2 z-20 hidden -translate-x-1/2 px-4 py-2 text-white md:block"
+              style={{ opacity: hintOpacity }}
+            >
+              {hint}
+            </motion.p>
+          ) : (
+            <p className="hero-glass label absolute bottom-8 left-1/2 z-20 hidden -translate-x-1/2 px-4 py-2 text-white md:block">
+              {hint}
+            </p>
+          )}
         </div>
       </div>
     </section>

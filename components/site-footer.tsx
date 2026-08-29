@@ -7,7 +7,7 @@ import { telHref } from "@/lib/utils";
 export function SiteFooter() {
   return (
     <footer className="border-t border-orange/40 bg-navy text-white">
-      <div className="mx-auto grid max-w-7xl gap-16 px-5 py-20 md:grid-cols-12 md:px-8 md:py-24">
+      <div className="mx-auto grid max-w-7xl gap-16 px-5 py-16 md:grid-cols-12 md:px-8 md:py-24">
         <div className="md:col-span-5">
           <div className="w-fit">
             <Image
@@ -66,7 +66,7 @@ export function SiteFooter() {
               <li key={area.slug}>
                 <Link
                   href={`/service-area#${area.slug}`}
-                  className="btn label inline-block border border-white/15 px-3 py-1.5 text-white/85 transition-colors hover:border-brass hover:text-white"
+                  className="btn label inline-flex min-h-11 items-center border border-white/15 px-3 py-2 text-white/85 transition-colors hover:border-brass hover:text-white"
                 >
                   {area.name}
                 </Link>
@@ -87,7 +87,12 @@ export function SiteFooter() {
             <Link href="/terms" className="nav-link hover:text-white">
               Terms
             </Link>
-            <a href={site.facebook} className="nav-link hover:text-white">
+            <a
+              href={site.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-link hover:text-white"
+            >
               Facebook
             </a>
           </div>

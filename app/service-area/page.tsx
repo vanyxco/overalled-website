@@ -46,7 +46,7 @@ export default function ServiceAreaPage() {
         crumbs={crumbs}
       />
       <section className="bg-paper">
-        <div className="mx-auto max-w-3xl px-5 py-20 md:px-8 md:py-28">
+        <div className="mx-auto max-w-3xl px-5 py-16 md:px-8 md:py-28">
           {areaGuides.map((area) => (
             <article
               key={area.slug}

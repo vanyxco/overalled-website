@@ -24,7 +24,7 @@ export function PageHero({
         height={448}
         className="pointer-events-none absolute -right-20 top-12 hidden w-[min(22rem,40vw)] opacity-[0.14] md:block"
       />
-      <div className="relative mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
+      <div className="relative mx-auto max-w-7xl px-5 py-14 md:px-8 md:py-28">
         {crumbs ? <Breadcrumbs items={crumbs} /> : null}
         <p className="label text-orange-hot">{eyebrow}</p>
         <span className="rule mt-5" aria-hidden />

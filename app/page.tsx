@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { HeroWash } from "@/components/hero-wash";
 import { ProofBar } from "@/components/proof-bar";
@@ -8,6 +9,7 @@ import { FaqList } from "@/components/faq-list";
 import { JsonLd } from "@/components/json-ld";
 import { areaGuides } from "@/lib/areas";
 import { homeFaqs } from "@/lib/faq";
+import { telHref } from "@/lib/utils";
 import {
   defaultDescription,
   defaultTitle,
@@ -67,7 +69,7 @@ export default function HomePage() {
 function Difference() {
   return (
     <section id="difference" className="scroll-mt-28 bg-paper">
-      <div className="mx-auto grid max-w-7xl gap-14 px-5 py-28 md:grid-cols-12 md:px-8 md:py-36">
+      <div className="mx-auto grid max-w-7xl items-start gap-14 px-5 py-16 md:grid-cols-12 md:px-8 md:py-36">
         <div className="md:col-span-5">
           <p className="label text-orange">The approach</p>
           <span className="rule mt-5" aria-hidden />
@@ -76,6 +78,16 @@ function Difference() {
             <br />
             for every surface.
           </h2>
+          <figure className="mt-10">
+            <Image
+              src="/about/crew.jpg"
+              alt="Overalled crew with the Honda GX390 washer and branded trailer"
+              width={1086}
+              height={1448}
+              sizes="(min-width: 768px) 42vw, 100vw"
+              className="h-auto w-full rounded-xl"
+            />
+          </figure>
         </div>
         <div className="md:col-span-6 md:col-start-7 space-y-6 leading-relaxed text-mute">
           <p id="definition">
@@ -88,8 +100,8 @@ function Difference() {
             Lake Houston humidity paints everything green. More pressure is not
             always the answer. We match the method to the surface — soft
             chemistry on the house and roof, a surface cleaner on concrete for
-            an even finish. The same process on a storefront or a parking
-            approach: scheduled, thorough, and left looking maintained.
+            an even finish. The same process on a storefront, a lot, or a
+            fleet: scheduled, thorough, and left looking maintained.
           </p>
           <p>
             That is why the Facebook page sits at {site.recommend} recommend
@@ -110,7 +122,7 @@ function Difference() {
 function Services() {
   return (
     <section className="bg-navy text-white">
-      <div className="mx-auto max-w-7xl px-5 py-28 md:px-8 md:py-36">
+      <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-36">
         <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <div>
             <p className="label text-water">Services</p>
@@ -162,14 +174,14 @@ function Services() {
 function Work() {
   return (
     <section id="work" className="scroll-mt-28 bg-paper">
-      <div className="mx-auto max-w-7xl px-5 py-28 md:px-8 md:py-36">
+      <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-36">
         <p className="label text-orange">Work</p>
         <span className="rule mt-5" aria-hidden />
         <h2 className="display mt-6 max-w-2xl text-4xl text-navy md:text-5xl">
           Recent jobs around Lake Houston.
         </h2>
         <p className="mt-5 max-w-2xl leading-relaxed text-mute">
-          Photos and captions as posted. Houses, driveways, and commercial
+          Photos and captions as posted. Houses, lots, fleets, and commercial
           work around Lake Houston.
         </p>
         <WorkFeed posts={featuredWork} variant="home" />
@@ -177,7 +189,12 @@ function Work() {
           <Link href="/work" className="nav-link label text-orange">
             Full feed
           </Link>
-          <a href={site.facebook} className="nav-link label text-orange">
+          <a
+            href={site.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-link label text-orange"
+          >
             Facebook page
           </a>
         </div>
@@ -189,7 +206,7 @@ function Work() {
 function Process() {
   return (
     <section id="how-it-works" className="scroll-mt-28 bg-canvas">
-      <div className="mx-auto max-w-7xl px-5 py-28 md:px-8 md:py-36">
+      <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-36">
         <p className="label text-orange">How it works</p>
         <span className="rule mt-5" aria-hidden />
         <h2 className="display mt-6 text-4xl text-navy md:text-5xl">
@@ -219,7 +236,7 @@ function Process() {
 function Area() {
   return (
     <section id="service-area" className="scroll-mt-28 bg-navy text-white">
-      <div className="mx-auto max-w-7xl px-5 py-28 md:px-8 md:py-32">
+      <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-32">
         <p className="label text-water">Service area</p>
         <span className="rule mt-5" aria-hidden />
         <h2 className="display mt-6 max-w-3xl text-4xl md:text-5xl">
@@ -230,7 +247,7 @@ function Area() {
             <li key={area.slug}>
               <Link
                 href={`/service-area#${area.slug}`}
-                className="btn label inline-block border border-brass/35 px-4 py-2.5 text-white/90 transition-colors hover:border-brass hover:text-white"
+                className="btn label inline-flex min-h-11 items-center border border-brass/35 px-4 py-2.5 text-white/90 transition-colors hover:border-brass hover:text-white"
               >
                 {area.name}, TX
               </Link>
@@ -251,7 +268,7 @@ function Area() {
 function Reviews() {
   return (
     <section className="bg-paper">
-      <div className="mx-auto max-w-7xl px-5 py-28 md:px-8 md:py-36">
+      <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-36">
         <p className="label text-orange">Reviews</p>
         <span className="rule mt-5" aria-hidden />
         <h2 className="display mt-6 text-4xl text-navy md:text-5xl">
@@ -281,7 +298,7 @@ function Reviews() {
 function QuoteBand() {
   return (
     <section id="quote" className="scroll-mt-28 bg-canvas">
-      <div className="mx-auto grid max-w-7xl gap-14 px-5 py-28 md:grid-cols-12 md:px-8 md:py-36">
+      <div className="mx-auto grid max-w-7xl gap-14 px-5 py-16 md:grid-cols-12 md:px-8 md:py-36">
         <div className="md:col-span-5">
           <p className="label text-orange">Free quote</p>
           <span className="rule mt-5" aria-hidden />
@@ -290,7 +307,11 @@ function QuoteBand() {
           </h2>
           <p className="mt-6 leading-relaxed text-mute">
             Address, a few photos, and what you want washed. We typically reply
-            the same day. Call {site.phone} if you need us sooner.
+            the same day. Call{" "}
+            <a href={telHref(site.phone)} className="nav-link text-navy">
+              {site.phone}
+            </a>{" "}
+            if you need us sooner.
           </p>
         </div>
         <div className="md:col-span-6 md:col-start-7">

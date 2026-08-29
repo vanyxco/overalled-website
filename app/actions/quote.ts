@@ -5,12 +5,12 @@ import { z } from "zod";
 import { site } from "@/lib/site";
 
 const schema = z.object({
-  name: z.string().trim().min(2, "Name is required"),
-  phone: z.string().trim().min(7, "Phone is required"),
-  email: z.string().trim().email("Valid email required"),
-  address: z.string().trim().min(4, "Property address helps us quote"),
-  city: z.string().trim().min(2, "City is required"),
-  services: z.array(z.string()).min(1, "Pick at least one surface"),
+  name: z.string().trim().min(2, "Name is required").max(80),
+  phone: z.string().trim().min(7, "Phone is required").max(32),
+  email: z.string().trim().email("Valid email required").max(254),
+  address: z.string().trim().min(4, "Property address helps us quote").max(200),
+  city: z.string().trim().min(2, "City is required").max(80),
+  services: z.array(z.string()).min(1, "Pick at least one surface").max(12),
   message: z.string().trim().max(2000).optional(),
   website: z.string().optional(),
 });

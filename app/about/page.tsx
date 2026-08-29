@@ -51,15 +51,15 @@ export default function AboutPage() {
         crumbs={crumbs}
       />
       <section className="bg-paper">
-        <div className="mx-auto grid max-w-7xl gap-14 px-5 py-20 md:grid-cols-12 md:px-8 md:py-28">
+        <div className="mx-auto grid max-w-7xl gap-14 px-5 py-16 md:grid-cols-12 md:px-8 md:py-28">
           <figure className="md:col-span-5">
-            <div className="relative">
+            <div className="relative mx-auto max-w-sm md:max-w-none">
               <Image
                 src={site.ownerPhoto}
                 alt={`${site.owner}, owner of ${site.legalName}, in overalls with a pressure washer wand`}
                 width={1024}
                 height={1536}
-                sizes="(min-width: 768px) 42vw, 100vw"
+                sizes="(min-width: 768px) 42vw, 24rem"
                 className="relative z-10 h-auto w-full bg-transparent"
                 priority
               />
@@ -93,8 +93,9 @@ export default function AboutPage() {
               reviews, with {site.followers} following the work.
             </p>
             <p className="border-l border-brass pl-5 font-display text-2xl text-navy">
-              Listing-day washes, storefronts before open, and regular
-              residential maintenance. We schedule around the property.
+              Listing-day washes, storefronts before open, fleet work on the
+              lot, and regular residential maintenance. We schedule around the
+              property.
             </p>
             <p>
               See{" "}

@@ -84,7 +84,7 @@ export default async function ServiceDetailPage({ params }: Props) {
         crumbs={crumbs}
       />
       <section className="bg-paper">
-        <div className="mx-auto grid max-w-7xl gap-14 px-5 py-20 md:grid-cols-12 md:px-8 md:py-28">
+        <div className="mx-auto grid max-w-7xl gap-14 px-5 py-16 md:grid-cols-12 md:px-8 md:py-28">
           <div className="md:col-span-7">
             <BackLink href="/services" label="All services" />
             <WashReveal className="mt-8 aspect-16/10 rounded-xl">
@@ -111,7 +111,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               {service.surfaces.map((surface) => (
                 <li
                   key={surface}
-                  className="btn label border border-brass/40 px-3 py-2 text-navy"
+                  className="btn label inline-flex min-h-11 items-center border border-brass/40 px-3 py-2 text-navy"
                 >
                   {surface}
                 </li>

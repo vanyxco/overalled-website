@@ -21,6 +21,19 @@ export function SiteHeader() {
   }, []);
 
   useEffect(() => {
+    if (!open) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  useEffect(() => {
     if (pathname !== "/") {
       setApproachInView(false);
       return;
@@ -95,6 +108,7 @@ export function SiteHeader() {
           type="button"
           className="label min-h-11 min-w-11 text-lg lg:hidden"
           aria-expanded={open}
+          aria-controls="mobile-nav"
           onClick={() => setOpen((v) => !v)}
         >
           {open ? "Close" : "Menu"}
@@ -102,8 +116,11 @@ export function SiteHeader() {
       </div>
 
       {open ? (
-        <div className="border-t border-white/10 bg-navy px-5 py-6 lg:hidden">
-          <nav className="flex flex-col gap-4" aria-label="Mobile">
+        <div
+          id="mobile-nav"
+          className="border-t border-white/10 bg-navy px-5 py-6 pb-24 lg:hidden"
+        >
+          <nav className="flex flex-col gap-5" aria-label="Mobile">
             {nav.map((item) => (
               <Link
                 key={item.href}

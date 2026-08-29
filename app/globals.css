@@ -41,7 +41,7 @@
   --font-display: var(--font-archivo-black);
   --font-label: var(--font-barlow);
   --font-body: var(--font-barlow);
-  --font-script: var(--font-rowdies);
+  --font-script: var(--font-fraunces);
   --radius-lg: var(--radius-surface);
   --radius-xl: var(--radius-surface);
   --radius-2xl: var(--radius-surface);
@@ -107,12 +107,21 @@ body {
   }
 
   .mark-word {
-    font-family: var(--font-rowdies), var(--font-archivo-black), sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    letter-spacing: 0.01em;
+    font-family: var(--font-archivo), var(--font-archivo-black), sans-serif;
+    font-style: italic;
+    font-weight: 800;
+    letter-spacing: -0.03em;
     line-height: 1;
     color: var(--water);
+  }
+
+  .years-word {
+    font-family: var(--font-fraunces), Georgia, serif;
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: inherit;
   }
 
   .logo-hero {
@@ -183,63 +192,83 @@ body {
 
   .wash-glow {
     position: absolute;
-    inset: -6% auto -6% -12vw;
-    width: 24vw;
+    top: 52%;
+    left: -7vw;
+    height: 40%;
+    width: 14vw;
     background: linear-gradient(
       90deg,
       transparent 0%,
-      rgb(255 255 255 / 0.05) 30%,
-      rgb(255 255 255 / 0.16) 50%,
-      rgb(255 255 255 / 0.05) 70%,
+      rgb(255 255 255 / 0.04) 32%,
+      rgb(255 255 255 / 0.14) 50%,
+      rgb(255 255 255 / 0.04) 68%,
       transparent 100%
     );
-    filter: blur(28px);
+    filter: blur(24px);
+  }
+
+  .wash-rig {
+    position: absolute;
+    top: 80%;
+    right: 100%;
+    transform: translateY(-50%) rotate(-12deg);
+    transform-origin: right 42%;
+  }
+
+  .wash-wand-wrap {
+    position: relative;
+    display: block;
+    line-height: 0;
+  }
+
+  .wash-nozzle {
+    position: absolute;
+    top: 42%;
+    left: 98%;
+    width: 1px;
+    height: 1px;
   }
 
   .wash-jet {
     position: absolute;
-    top: 72%;
-    left: -6px;
-    width: 16rem;
-    height: 11rem;
+    top: 50%;
+    left: 0;
+    width: 5.5rem;
+    height: 1.6rem;
     translate: 0 -50%;
-    rotate: 9deg;
-    transform-origin: left center;
     background: radial-gradient(
-      ellipse 95% 70% at 0% 50%,
-      rgb(255 255 255 / 0.55) 0%,
-      rgb(236 246 255 / 0.22) 32%,
-      rgb(255 255 255 / 0.07) 58%,
-      transparent 78%
+      ellipse 100% 70% at 0% 50%,
+      rgb(255 255 255 / 0.75) 0%,
+      color-mix(in srgb, var(--water) 40%, white) 28%,
+      rgb(255 255 255 / 0.08) 58%,
+      transparent 80%
     );
-    filter: blur(10px);
+    filter: blur(3.5px);
   }
 
   .wash-stream {
     position: absolute;
-    top: 72%;
-    left: -2px;
-    width: 9rem;
-    height: 18px;
+    top: 50%;
+    left: 0;
+    width: 4.25rem;
+    height: 5px;
     translate: 0 -50%;
-    rotate: 9deg;
-    transform-origin: left center;
     border-radius: 999px;
     background: linear-gradient(
       90deg,
-      rgb(255 255 255 / 0.7) 0%,
-      rgb(236 246 255 / 0.28) 45%,
+      rgb(255 255 255 / 0.95) 0%,
+      color-mix(in srgb, var(--water) 50%, white) 42%,
       transparent 100%
     );
-    filter: blur(4px);
+    filter: blur(1px);
   }
 
   .wash-bloom {
     position: absolute;
     top: 50%;
-    right: -1rem;
-    width: 4.5rem;
-    height: 1.5rem;
+    left: -0.4rem;
+    width: 2.25rem;
+    height: 1.1rem;
     translate: 0 -50%;
     border-radius: 999px;
     background: radial-gradient(
@@ -248,12 +277,12 @@ body {
       rgb(255 255 255 / 0.35) 40%,
       transparent 72%
     );
-    filter: blur(2.4px);
+    filter: blur(1.8px);
   }
 
   .wash-particle {
     position: absolute;
-    left: 0.4rem;
+    left: 0.2rem;
     border-radius: 999px;
     background: rgb(255 255 255 / 0.88);
     filter: blur(0.45px);
@@ -261,15 +290,34 @@ body {
   }
 
   .wash-wand {
-    height: 3.75rem;
+    height: 2.75rem;
     width: auto;
     filter: drop-shadow(0 0 1px white)
       drop-shadow(0 8px 14px color-mix(in srgb, var(--navy) 60%, transparent));
   }
 
+  @media (max-width: 767px) {
+    .wash-glow {
+      display: none;
+    }
+  }
+
   @media (min-width: 768px) {
+    .wash-rig {
+      top: 72%;
+    }
+
     .wash-wand {
       height: 4rem;
+    }
+
+    .wash-jet {
+      width: 8.5rem;
+      height: 2.1rem;
+    }
+
+    .wash-stream {
+      width: 6rem;
     }
   }
 }
@@ -336,7 +384,7 @@ select {
     opacity: 0.8;
   }
   to {
-    transform: translate(56px, var(--drift, 18px));
+    transform: translate(96px, var(--drift, 18px));
     opacity: 0;
   }
 }
