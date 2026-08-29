@@ -80,12 +80,12 @@ function Difference() {
           </h2>
           <figure className="mt-10">
             <Image
-              src="/about/crew.jpg"
-              alt="Overalled crew with the Honda GX390 washer and branded trailer"
-              width={1086}
-              height={1448}
-              sizes="(min-width: 768px) 42vw, 100vw"
-              className="h-auto w-full rounded-xl"
+              src="/brand/logo-wide.png"
+              alt=""
+              width={410}
+              height={136}
+              sizes="(min-width: 768px) 42vw, calc(100vw - 2.5rem)"
+              className="h-auto w-full object-contain"
             />
           </figure>
         </div>
@@ -113,14 +113,6 @@ function Difference() {
             We treat the property like it is going on the market. Sometimes it
             is.
           </p>
-          <Image
-            src="/brand/logo-wide.png"
-            alt=""
-            width={410}
-            height={136}
-            sizes="(min-width: 768px) 42vw, calc(100vw - 2.5rem)"
-            className="h-auto w-full object-contain"
-          />
         </div>
       </div>
     </section>
