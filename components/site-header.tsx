@@ -119,6 +119,13 @@ export function SiteHeader() {
                 {item.label}
               </Link>
             ))}
+            <a
+              href={telHref(site.phone)}
+              className="nav-link label w-fit text-lg text-white"
+              onClick={() => setOpen(false)}
+            >
+              {site.phone}
+            </a>
             <Link
               href="/contact"
               className="btn label mt-2 bg-blue px-4 py-3.5 text-center text-lg text-white"

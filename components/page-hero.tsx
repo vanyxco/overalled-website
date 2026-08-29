@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import type { Crumb } from "@/lib/seo";
@@ -16,6 +17,13 @@ export function PageHero({
   return (
     <header className="relative overflow-hidden bg-navy pt-32 text-white md:pt-36">
       <div className="grain" />
+      <Image
+        src="/brand/logo-mark.png"
+        alt=""
+        width={448}
+        height={448}
+        className="pointer-events-none absolute -right-20 top-12 hidden w-[min(22rem,40vw)] opacity-[0.14] md:block"
+      />
       <div className="relative mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
         {crumbs ? <Breadcrumbs items={crumbs} /> : null}
         <p className="label text-orange-hot">{eyebrow}</p>

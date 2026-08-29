@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { areas, nav, site } from "@/lib/site";
+import { areaGuides } from "@/lib/areas";
+import { nav, site } from "@/lib/site";
 import { telHref } from "@/lib/utils";
 
 export function SiteFooter() {
@@ -60,9 +61,18 @@ export function SiteFooter() {
               {site.locality}, {site.region} {site.postalCode}
             </p>
           </address>
-          <p className="mt-8 leading-relaxed text-white/80">
-            {areas.join(" · ")}
-          </p>
+          <ul className="mt-8 flex flex-wrap gap-2">
+            {areaGuides.map((area) => (
+              <li key={area.slug}>
+                <Link
+                  href={`/service-area#${area.slug}`}
+                  className="btn label inline-block border border-white/15 px-3 py-1.5 text-white/85 transition-colors hover:border-brass hover:text-white"
+                >
+                  {area.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
       <div className="border-t border-white/10">
@@ -77,9 +87,6 @@ export function SiteFooter() {
             <Link href="/terms" className="nav-link hover:text-white">
               Terms
             </Link>
-            <a href="/llms.txt" className="nav-link hover:text-white">
-              llms.txt
-            </a>
             <a href={site.facebook} className="nav-link hover:text-white">
               Facebook
             </a>
