@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import {
   Atkinson_Hyperlegible_Next,
   Fraunces,
@@ -6,7 +6,9 @@ import {
 } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { JsonLd } from "@/components/json-ld";
 import { site } from "@/lib/site";
+import { defaultDescription, defaultTitle, graph } from "@/lib/seo";
 import { telHref } from "@/lib/utils";
 import "./globals.css";
 
@@ -30,58 +32,80 @@ const script = Great_Vibes({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  themeColor: "#071525",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.domain),
   title: {
-    default: `${site.name} | Lake Houston Exterior Cleaning`,
+    default: defaultTitle,
     template: `%s | ${site.name}`,
   },
-  description:
-    "Residential and commercial pressure washing and soft washing across Crosby, Huffman, Kingwood, Humble, Atascocita, and Lake Houston. 100% recommend. Rocky shows up overalled.",
+  description: defaultDescription,
+  applicationName: site.name,
+  authors: [{ name: site.legalName, url: site.domain }],
+  creator: site.legalName,
+  publisher: site.legalName,
+  category: "home and construction",
+  keywords: [
+    "pressure washing Crosby TX",
+    "soft wash Lake Houston",
+    "house washing Kingwood",
+    "roof soft wash Huffman",
+    "driveway cleaning Humble",
+    "commercial pressure washing Atascocita",
+    "Overalled Pressure Washing",
+  ],
+  referrer: "origin-when-cross-origin",
+  formatDetection: {
+    telephone: false,
+    email: false,
+    address: false,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  alternates: {
+    types: {
+      "text/plain": "/llms.txt",
+    },
+  },
   openGraph: {
-    title: site.name,
-    description: site.tagline,
-    url: site.domain,
     siteName: site.name,
     locale: "en_US",
     type: "website",
   },
-  icons: { icon: "/brand/logo.jpg" },
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: site.legalName,
-  telephone: site.phone,
-  email: site.email,
-  url: site.domain,
-  image: `${site.domain}/brand/logo.jpg`,
-  areaServed: "Crosby, Huffman, Kingwood, Humble, Atascocita, Lake Houston, TX",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Crosby",
-    addressRegion: "TX",
-    addressCountry: "US",
+  twitter: {
+    card: "summary_large_image",
   },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5",
-    reviewCount: String(site.reviewCount),
+  icons: { icon: "/brand/logo.jpg", apple: "/brand/logo.jpg" },
+  other: {
+    "geo.region": "US-TX",
+    "geo.placename": site.locality,
+    "geo.position": `${site.geo.latitude};${site.geo.longitude}`,
+    ICBM: `${site.geo.latitude}, ${site.geo.longitude}`,
   },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
+      lang="en-US"
       className={`${fraunces.variable} ${atkinson.variable} ${script.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-paper font-body text-ink">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <JsonLd data={graph([])} />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-80 focus:bg-orange focus:px-4 focus:py-2 focus:text-white"

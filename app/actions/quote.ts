@@ -70,7 +70,7 @@ export async function submitQuote(
     return {
       status: "success",
       message:
-        "Rocky has the details. He typically replies the same day — or call (832) 836-0979 if it is urgent.",
+        "We received your request. We typically reply the same day — or call (832) 836-0979 if you need us sooner.",
     };
   }
 
@@ -90,13 +90,13 @@ export async function submitQuote(
     console.error(error);
     return {
       status: "error",
-      message: `Could not send just now. Call ${site.phone} and Rocky will take it.`,
+      message: `Could not send just now. Please call ${site.phone}.`,
     };
   }
 
   return {
     status: "success",
-    message: "Quote is in Rocky’s inbox. He typically replies the same day.",
+    message: "Your request is in. We typically reply the same day.",
   };
 }
 

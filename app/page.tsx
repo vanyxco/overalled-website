@@ -1,19 +1,53 @@
-import Image from "next/image";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { HeroWash } from "@/components/hero-wash";
+import { ProofBar } from "@/components/proof-bar";
 import { QuoteForm } from "@/components/quote-form";
+import { WorkFeed } from "@/components/work-feed";
+import { FaqList } from "@/components/faq-list";
+import { JsonLd } from "@/components/json-ld";
+import { areaGuides } from "@/lib/areas";
+import { homeFaqs } from "@/lib/faq";
 import {
-  areas,
+  defaultDescription,
+  defaultTitle,
+  faqSchema,
+  howToSchema,
+  pageMetadata,
+  webPageSchema,
+} from "@/lib/seo";
+import {
+  featuredWork,
   processSteps,
   reviews,
   services,
   site,
-  workItems,
 } from "@/lib/site";
+
+export const metadata: Metadata = pageMetadata({
+  title: defaultTitle,
+  description: defaultDescription,
+  path: "/",
+});
 
 export default function HomePage() {
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@graph": [
+            webPageSchema({
+              path: "/",
+              title: defaultTitle,
+              description: defaultDescription,
+              speakable: ["h1", "#hero-kicker", "#definition", "#faq"],
+            }),
+            faqSchema(homeFaqs, "/"),
+            howToSchema(),
+          ],
+        }}
+      />
       <HeroWash />
       <main id="main">
         <ProofBar />
@@ -23,29 +57,10 @@ export default function HomePage() {
         <Process />
         <Area />
         <Reviews />
+        <FaqList faqs={homeFaqs} />
         <QuoteBand />
       </main>
     </>
-  );
-}
-
-function ProofBar() {
-  const items = [
-    `${site.recommend} recommend · ${site.reviewCount} reviews`,
-    `${site.followers} neighbors following`,
-    "Homes and storefronts · same wand",
-    site.award,
-  ];
-  return (
-    <section className="border-y border-brass/35 bg-canvas">
-      <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-8 md:flex-row md:items-baseline md:justify-between md:gap-10 md:px-8">
-        {items.map((item) => (
-          <p key={item} className="label max-w-sm leading-relaxed text-navy">
-            {item}
-          </p>
-        ))}
-      </div>
-    </section>
   );
 }
 
@@ -54,26 +69,33 @@ function Difference() {
     <section id="difference" className="scroll-mt-28 bg-paper">
       <div className="mx-auto grid max-w-7xl gap-14 px-5 py-28 md:grid-cols-12 md:px-8 md:py-36">
         <div className="md:col-span-5">
-          <p className="label text-orange">The difference</p>
+          <p className="label text-orange">The approach</p>
           <span className="rule mt-5" aria-hidden />
           <h2 className="display mt-6 text-4xl text-navy md:text-5xl">
-            Not a rented machine.
-            <br />A neighbor in overalls.
+            The right method
+            <br />
+            for every surface.
           </h2>
         </div>
         <div className="md:col-span-6 md:col-start-7 space-y-6 leading-relaxed text-mute">
+          <p id="definition">
+            {site.legalName} is an owner-operated soft-wash and pressure-washing
+            company based in Crosby, Texas. We clean homes and businesses
+            across Huffman, Kingwood, Humble, Atascocita, and the rest of the
+            Lake Houston area.
+          </p>
           <p>
-            Lake Houston humidity paints everything green. Most crews answer
-            that with more PSI. Rocky matches the method to the surface — soft
-            chemistry on the house and roof, a surface cleaner on the concrete
-            so you do not get zebra stripes. Same playbook on a bank lot or a
-            shop walk: early, even, and looking like the place is run tight.
+            Lake Houston humidity paints everything green. More pressure is not
+            always the answer. We match the method to the surface — soft
+            chemistry on the house and roof, a surface cleaner on concrete for
+            an even finish. The same process on a storefront or a parking
+            approach: scheduled, thorough, and left looking maintained.
           </p>
           <p>
             That is why the Facebook page sits at {site.recommend} recommend
             across {site.reviewCount} reviews, why Crosby–Huffman voted
-            Overalled a Cream of the Crop runner-up in 2026, and why neighbors
-            keep handing each other the number.
+            Overalled a Cream of the Crop runner-up in 2026, and why the
+            number keeps getting passed along.
           </p>
           <p className="border-l border-brass pl-5 font-display text-2xl text-navy">
             We treat the property like it is going on the market. Sometimes it
@@ -109,7 +131,7 @@ function Services() {
             <li key={service.slug} className="border-b border-white/15">
               <Link
                 href={`/services/${service.slug}`}
-                className="group grid grid-cols-[auto_1fr_auto] items-baseline gap-6 py-7 transition-colors hover:bg-white/5 md:grid-cols-[4.5rem_1fr_auto_auto] md:px-2"
+                className="service-row group grid grid-cols-[auto_1fr_auto] items-baseline gap-6 py-7 transition-colors hover:bg-white/5 md:grid-cols-[4.5rem_1fr_auto_auto] md:px-2"
               >
                 <span className="script text-3xl text-orange-hot">
                   0{index + 1}
@@ -139,51 +161,26 @@ function Services() {
 
 function Work() {
   return (
-    <section className="bg-paper">
+    <section id="work" className="scroll-mt-28 bg-paper">
       <div className="mx-auto max-w-7xl px-5 py-28 md:px-8 md:py-36">
         <p className="label text-orange">Work</p>
         <span className="rule mt-5" aria-hidden />
         <h2 className="display mt-6 max-w-2xl text-4xl text-navy md:text-5xl">
-          The before lives on the right. Until it doesn&apos;t.
+          Recent jobs from the Facebook page.
         </h2>
-        <div className="mt-16 grid gap-3 md:grid-cols-12 md:gap-4">
-          {workItems.map((item, index) => (
-            <figure
-              key={item.src}
-              className={
-                index === 0
-                  ? "group relative md:col-span-7 md:row-span-2"
-                  : "group relative md:col-span-5"
-              }
-            >
-              <div
-                className={
-                  index === 0
-                    ? "relative aspect-4/5 overflow-hidden md:aspect-auto md:h-full md:min-h-135"
-                    : "relative aspect-4/3 overflow-hidden"
-                }
-              >
-                <Image
-                  src={item.src}
-                  alt={item.title}
-                  fill
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
-                />
-                <figcaption className="absolute inset-x-0 bottom-0 bg-linear-to-t from-navy/85 via-navy/35 to-transparent p-5 pt-16 text-white">
-                  <span className="font-display text-xl">{item.title}</span>
-                  <span className="mt-1 block text-white/85">{item.caption}</span>
-                </figcaption>
-              </div>
-            </figure>
-          ))}
+        <p className="mt-5 max-w-2xl leading-relaxed text-mute">
+          Photos and captions as posted. Houses, driveways, and commercial
+          work around Lake Houston.
+        </p>
+        <WorkFeed posts={featuredWork} variant="home" />
+        <div className="mt-12 flex flex-wrap gap-8">
+          <Link href="/work" className="nav-link label text-orange">
+            Full feed
+          </Link>
+          <a href={site.facebook} className="nav-link label text-orange">
+            Facebook page
+          </a>
         </div>
-        <Link
-          href="/work"
-          className="nav-link label mt-12 inline-block text-orange"
-        >
-          Full gallery
-        </Link>
       </div>
     </section>
   );
@@ -191,12 +188,12 @@ function Work() {
 
 function Process() {
   return (
-    <section className="bg-canvas">
+    <section id="how-it-works" className="scroll-mt-28 bg-canvas">
       <div className="mx-auto max-w-7xl px-5 py-28 md:px-8 md:py-36">
-        <p className="label text-orange">How it goes</p>
+        <p className="label text-orange">How it works</p>
         <span className="rule mt-5" aria-hidden />
         <h2 className="display mt-6 text-4xl text-navy md:text-5xl">
-          Three steps. No circus.
+          Request. Wash. Inspect.
         </h2>
         <ol className="mt-16 grid gap-12 md:grid-cols-3 md:gap-0">
           {processSteps.map((step, index) => (
@@ -226,18 +223,26 @@ function Area() {
         <p className="label text-water">Service area</p>
         <span className="rule mt-5" aria-hidden />
         <h2 className="display mt-6 max-w-3xl text-4xl md:text-5xl">
-          Crosby to The Woodlands. If we can drive it before lunch, we wash it.
+          Crosby to The Woodlands. Lake Houston and the communities around it.
         </h2>
         <ul className="mt-14 flex flex-wrap gap-3">
-          {areas.map((city) => (
-            <li
-              key={city}
-              className="label border border-brass/35 px-4 py-2.5 text-white/90"
-            >
-              {city}, TX
+          {areaGuides.map((area) => (
+            <li key={area.slug}>
+              <Link
+                href={`/service-area#${area.slug}`}
+                className="label inline-block border border-brass/35 px-4 py-2.5 text-white/90 transition-colors hover:border-brass hover:text-white"
+              >
+                {area.name}, TX
+              </Link>
             </li>
           ))}
         </ul>
+        <Link
+          href="/service-area"
+          className="nav-link label mt-10 inline-block text-orange-hot"
+        >
+          Full service area
+        </Link>
       </div>
     </section>
   );
@@ -247,7 +252,7 @@ function Reviews() {
   return (
     <section className="bg-paper">
       <div className="mx-auto max-w-7xl px-5 py-28 md:px-8 md:py-36">
-        <p className="label text-orange">Neighbors</p>
+        <p className="label text-orange">Reviews</p>
         <span className="rule mt-5" aria-hidden />
         <h2 className="display mt-6 text-4xl text-navy md:text-5xl">
           {site.recommend} recommend. {site.reviewCount} times over.
@@ -281,11 +286,11 @@ function QuoteBand() {
           <p className="label text-orange">Free quote</p>
           <span className="rule mt-5" aria-hidden />
           <h2 className="display mt-6 text-4xl text-navy md:text-5xl">
-            Send the address. Get a number back.
+            Request a free quote.
           </h2>
           <p className="mt-6 leading-relaxed text-mute">
-            Photos from the driveway — or the parking lot — help. Same-day
-            replies are the norm. Rocky still answers the phone at {site.phone}.
+            Address, a few photos, and what you want washed. We typically reply
+            the same day. Call {site.phone} if you need us sooner.
           </p>
         </div>
         <div className="md:col-span-6 md:col-start-7">

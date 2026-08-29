@@ -1,43 +1,72 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { PageHero } from "@/components/page-hero";
-import { workItems } from "@/lib/site";
+import { WorkFeed } from "@/components/work-feed";
+import { FaqList } from "@/components/faq-list";
+import { JsonLd } from "@/components/json-ld";
+import { workFaqs } from "@/lib/faq";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  pageMetadata,
+  webPageSchema,
+  workCollectionSchema,
+} from "@/lib/seo";
+import { site, workPosts } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Work",
-  description:
-    "Driveways, houses, fences, and storefronts washed across Lake Houston, Crosby, Huffman, Kingwood, and Humble.",
-};
+const title = "Pressure Washing Jobs | Lake Houston Before & After";
+const description =
+  "Real house washes, driveways, roofs, and commercial jobs from the Overalled Facebook page. Crosby, Huffman, Kingwood, Humble, and Lake Houston — newest first.";
+const crumbs = [
+  { name: "Home", path: "/" },
+  { name: "Work", path: "/work" },
+];
+
+export const metadata: Metadata = pageMetadata({
+  title,
+  description,
+  path: "/work",
+  image: "/work/opengraph-image",
+  imageAlt:
+    "Freshly washed brick and windows on a residential home — Overalled Pressure Washing jobs in Lake Houston",
+});
 
 export default function WorkPage() {
   return (
     <main id="main">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@graph": [
+            webPageSchema({
+              path: "/work",
+              title,
+              description,
+              type: "CollectionPage",
+            }),
+            breadcrumbSchema(crumbs),
+            workCollectionSchema(workPosts),
+            faqSchema(workFaqs, "/work"),
+          ],
+        }}
+      />
       <PageHero
         eyebrow="Work"
-        title="Proof lives in the concrete."
-        lede="Real Gulf Coast grime. Real wipe lines. The kind of before-and-after that makes a neighbor walk over and ask for the number."
+        title="Jobs as posted on Facebook."
+        lede="Newest first, with the captions from the page. Open a photo for the rest of the album, or jump to the post on Facebook."
+        crumbs={crumbs}
       />
       <section className="bg-paper">
-        <div className="mx-auto max-w-7xl columns-1 gap-4 px-5 py-20 md:columns-2 md:px-8 md:py-28">
-          {workItems.map((item) => (
-            <figure key={item.src} className="group mb-4 break-inside-avoid">
-              <div className="relative aspect-4/3 overflow-hidden">
-                <Image
-                  src={item.src}
-                  alt={item.title}
-                  fill
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
-                />
-                <figcaption className="absolute inset-x-0 bottom-0 bg-linear-to-t from-navy/85 via-navy/35 to-transparent p-5 pt-16 text-white">
-                  <p className="font-display text-xl">{item.title}</p>
-                  <p className="mt-1 text-white/85">{item.caption}</p>
-                </figcaption>
-              </div>
-            </figure>
-          ))}
+        <div className="mx-auto max-w-2xl px-5 py-20 md:px-8 md:py-28">
+          <WorkFeed posts={workPosts} variant="feed" />
+          <a
+            href={site.facebook}
+            className="nav-link label mt-16 inline-block text-orange"
+          >
+            Facebook page
+          </a>
         </div>
       </section>
+      <FaqList faqs={workFaqs} heading="About this feed" />
     </main>
   );
 }

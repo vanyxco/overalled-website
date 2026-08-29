@@ -2,13 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { nav, site } from "@/lib/site";
 import { cn, telHref } from "@/lib/utils";
 
 export function SiteHeader() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [approachInView, setApproachInView] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -16,6 +19,23 @@ export function SiteHeader() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      setApproachInView(false);
+      return;
+    }
+    const section = document.getElementById("difference");
+    if (!section) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry) setApproachInView(entry.isIntersecting);
+      },
+      { threshold: 0.28 },
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [pathname]);
 
   return (
     <header
@@ -50,6 +70,11 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
+              aria-current={
+                isCurrent(item.href, pathname, approachInView)
+                  ? "page"
+                  : undefined
+              }
               className="nav-link label text-white/90 transition-colors hover:text-white"
             >
               {item.label}
@@ -89,7 +114,12 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="label text-lg text-white"
+                aria-current={
+                  isCurrent(item.href, pathname, approachInView)
+                    ? "page"
+                    : undefined
+                }
+                className="nav-link label w-fit text-lg text-white"
                 onClick={() => setOpen(false)}
               >
                 {item.label}
@@ -107,4 +137,12 @@ export function SiteHeader() {
       ) : null}
     </header>
   );
+}
+
+function isCurrent(href: string, pathname: string, approachInView: boolean) {
+  if (href === "/#difference") return pathname === "/" && approachInView;
+  if (href === "/services") {
+    return pathname === "/services" || pathname.startsWith("/services/");
+  }
+  return pathname === href;
 }

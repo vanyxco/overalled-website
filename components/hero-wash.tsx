@@ -16,8 +16,8 @@ export function HeroWash() {
   return (
     <div>
       <WashChapter
-        act="01 / House"
-        kicker="Your home's greatest partner"
+        act="01 / Residential"
+        kicker="Pressure washing and soft washing in Crosby, Huffman, and Lake Houston"
         heading="h1"
         title={
           <>
@@ -28,10 +28,10 @@ export function HeroWash() {
             left behind.
           </>
         }
-        body="Soft-wash the house. Surface-clean the concrete. Rocky shows up overalled — and Lake Houston curb appeal looks years younger."
+        body="Soft wash for houses and roofs. Surface cleaning for concrete. Serving Crosby, Huffman, Kingwood, Humble, and Lake Houston. 100% recommend across 37 reviews — Cream of the Crop runner-up for Crosby–Huffman."
         hint="Scroll to wash the drive"
-        dirtySrc="/hero/dirty.png"
-        cleanSrc="/hero/clean.png"
+        dirtySrc="/hero/dirty.jpg"
+        cleanSrc="/hero/clean.jpg"
         dirtyAlt="Stained suburban driveway before washing"
         cleanAlt="The same driveway after a professional wash"
         objectClass="object-cover object-[center_70%]"
@@ -39,8 +39,8 @@ export function HeroWash() {
       />
       <ActBreak />
       <WashChapter
-        act="02 / Storefront"
-        kicker="Commercial, too"
+        act="02 / Commercial"
+        kicker="Commercial properties"
         heading="h2"
         title={
           <>
@@ -51,10 +51,10 @@ export function HeroWash() {
             too.
           </>
         }
-        body="Banks, shops, parking approaches — early, fast, and looking like the business behind them is run tight. Same crew. Different curb."
+        body="Storefronts, banks, and parking approaches — scheduled around your hours and finished before customers arrive. The same standard as a house wash."
         hint="Scroll to wash the lot"
-        dirtySrc="/hero/bank-dirty.png"
-        cleanSrc="/hero/bank-clean.png"
+        dirtySrc="/hero/bank-dirty.jpg"
+        cleanSrc="/hero/bank-clean.jpg"
         dirtyAlt="Neglected commercial bank parking lot before washing"
         cleanAlt="The same bank storefront after a professional wash"
         objectClass="object-cover object-[center_55%]"
@@ -72,18 +72,19 @@ function ActBreak() {
       <div className="grain" />
       <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-20 md:grid-cols-12 md:px-8 md:py-24">
         <p className="label text-orange-hot md:col-span-3">
-          After the house
+          Residential and commercial
         </p>
         <div className="md:col-span-9">
           <span className="rule mb-6" aria-hidden />
           <p className="display text-4xl sm:text-5xl md:text-6xl">
-            Same wand.
+            The same standard
             <br />
-            Different curb.
+            on every property.
           </p>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/90 md:text-xl">
-            Homes get the years washed off. So do the lots people park in on
-            Monday. Rocky already does both — the next scroll is the bank.
+            Homes, storefronts, and parking lots across Lake Houston. Soft wash
+            where high pressure would do damage. Surface cleaning where concrete
+            needs an even finish.
           </p>
         </div>
       </div>
@@ -192,7 +193,12 @@ function WashChapter({
             className="relative z-20 flex h-full flex-col items-center justify-center px-5 text-center text-white"
             style={reduce ? undefined : { opacity: copyOpacity, y: copyY }}
           >
-            <p className="label text-orange-hot">{kicker}</p>
+            <p
+              id={Heading === "h1" ? "hero-kicker" : undefined}
+              className="label text-orange-hot"
+            >
+              {kicker}
+            </p>
             <Heading className="display mt-5 max-w-5xl text-[2.75rem] sm:text-6xl md:text-7xl lg:text-[5.25rem]">
               {title}
             </Heading>

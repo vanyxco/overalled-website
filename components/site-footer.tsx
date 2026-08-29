@@ -24,23 +24,33 @@ export function SiteFooter() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href="/service-area" className="nav-link hover:text-white">
+                Service area
+              </Link>
+            </li>
           </ul>
         </div>
         <div className="md:col-span-4">
-          <p className="label text-water">Reach Rocky</p>
+          <p className="label text-water">Contact</p>
           <span className="rule mt-4 bg-water/60" aria-hidden />
-          <a
-            href={telHref(site.phone)}
-            className="mt-6 block font-display text-2xl text-white md:text-3xl"
-          >
-            {site.phone}
-          </a>
-          <a
-            href={`mailto:${site.email}`}
-            className="mt-3 block text-white/85 hover:text-white"
-          >
-            {site.email}
-          </a>
+          <address className="not-italic">
+            <a
+              href={telHref(site.phone)}
+              className="mt-6 block font-display text-2xl text-white md:text-3xl"
+            >
+              {site.phone}
+            </a>
+            <a
+              href={`mailto:${site.email}`}
+              className="mt-3 block text-white/85 hover:text-white"
+            >
+              {site.email}
+            </a>
+            <p className="mt-6 text-white/85">
+              {site.locality}, {site.region} {site.postalCode}
+            </p>
+          </address>
           <p className="mt-8 leading-relaxed text-white/80">
             {areas.join(" · ")}
           </p>
@@ -51,13 +61,16 @@ export function SiteFooter() {
           <p>
             © {new Date().getFullYear()} {site.legalName}. {site.award}.
           </p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap gap-6">
             <Link href="/privacy" className="nav-link hover:text-white">
               Privacy
             </Link>
             <Link href="/terms" className="nav-link hover:text-white">
               Terms
             </Link>
+            <a href="/llms.txt" className="nav-link hover:text-white">
+              llms.txt
+            </a>
             <a href={site.facebook} className="nav-link hover:text-white">
               Facebook
             </a>

@@ -22,7 +22,7 @@ export function QuoteForm() {
     return (
       <div className="border border-brass/50 bg-canvas px-8 py-12">
         <p className="label text-orange">Sent</p>
-        <p className="display mt-3 text-3xl text-navy">You’re on the list.</p>
+        <p className="display mt-3 text-3xl text-navy">Request received.</p>
         <p className="mt-3 max-w-md leading-relaxed text-mute">
           {state.message}
         </p>
@@ -124,7 +124,7 @@ export function QuoteForm() {
           pending && "opacity-70",
         )}
       >
-        {pending ? "Sending…" : "Send the quote request"}
+        {pending ? "Sending…" : "Request a quote"}
       </button>
     </form>
   );

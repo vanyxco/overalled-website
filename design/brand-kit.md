@@ -4,7 +4,7 @@ Source: Facebook page (Aug 2026), logo, cover, reviews, and Cream of the Crop 20
 
 ## Voice
 
-Neighbor-first, owner-on-the-wand. Warm Gulf Coast English without cartoon slang. Rocky shows up overalled, tells you the truth, and leaves the place looking years younger.
+Professional, owner-operated, specific. Warm Gulf Coast English without slang, mascot jokes, or punchlines. The company looks established; the Facebook gallery keeps the page’s own captions.
 
 ## Color
 

@@ -157,3 +157,51 @@ select {
   outline: 2px solid var(--water);
   outline-offset: 3px;
 }
+
+.service-row {
+  position: relative;
+}
+
+.service-row::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: var(--water);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.45s var(--ease);
+}
+
+.service-row:hover::before,
+.service-row:focus-visible::before {
+  transform: scaleY(1);
+}
+
+.work-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  height: 100dvh;
+  max-height: none;
+  width: 100vw;
+  max-width: none;
+  margin: 0;
+  overflow: auto;
+  border: 0;
+  background: var(--navy);
+  padding: 0;
+  color: white;
+}
+
+.work-lightbox::backdrop {
+  background: color-mix(in srgb, var(--navy) 94%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-row::before {
+    transition: none;
+  }
+}
