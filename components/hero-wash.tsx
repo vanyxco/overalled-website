@@ -140,7 +140,7 @@ function HeroCopy({
   return (
     <>
       {showTabs ? <ActTabs current={current} /> : null}
-      <div className="hero-glass w-full max-w-3xl px-4 py-5 sm:px-5 sm:py-6 md:px-10 md:py-9">
+      <div className="w-full max-w-3xl">
         <p
           id={Heading === "h1" ? "hero-kicker" : undefined}
           className="label"
@@ -162,7 +162,7 @@ function HeroCopy({
         <Heading className="display mt-5 text-[clamp(1.7rem,6.8vw,3.75rem)]">
           {title}
         </Heading>
-        <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/90 md:text-xl">
+        <p className="hero-glass mx-auto mt-6 max-w-xl px-4 py-4 text-lg leading-relaxed text-white/90 sm:px-5 sm:py-5 md:px-6 md:text-xl">
           {body}
         </p>
       </div>
