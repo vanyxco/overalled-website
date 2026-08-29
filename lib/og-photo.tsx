@@ -1,8 +1,8 @@
 import { ImageResponse } from "next/og";
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { loadOgFonts, ogSize, publicDataUrl } from "@/lib/og-fonts";
+import { site } from "@/lib/site";
 
-export const ogSize = { width: 1200, height: 630 };
+export { ogSize };
 
 export async function photoOgImage({
   photoPath,
@@ -13,10 +13,11 @@ export async function photoOgImage({
   kicker: string;
   title: string;
 }) {
-  const file = await readFile(
-    join(process.cwd(), "public", photoPath.replace(/^\//, "")),
-  );
-  const src = `data:image/jpeg;base64,${file.toString("base64")}`;
+  const [fonts, photo, logo] = await Promise.all([
+    loadOgFonts(),
+    publicDataUrl(photoPath),
+    publicDataUrl("/brand/logo-mark.png"),
+  ]);
 
   return new ImageResponse(
     (
@@ -27,11 +28,10 @@ export async function photoOgImage({
           height: "100%",
           position: "relative",
           background: "#061433",
-          fontFamily: "Arial Black, Impact, Helvetica, sans-serif",
         }}
       >
         <img
-          src={src}
+          src={photo}
           alt=""
           width={1200}
           height={630}
@@ -46,41 +46,85 @@ export async function photoOgImage({
           style={{
             display: "flex",
             flexDirection: "column",
-            justifyContent: "flex-end",
+            justifyContent: "space-between",
             width: "100%",
             height: "100%",
-            padding: 56,
+            padding: 48,
             background:
-              "linear-gradient(to top, #061433 0%, rgba(6,20,51,0.55) 42%, rgba(6,20,51,0.2) 100%)",
+              "linear-gradient(to top, rgba(6,20,51,0.94) 0%, rgba(6,20,51,0.42) 46%, rgba(6,20,51,0.12) 100%)",
           }}
         >
-          <div
-            style={{
-              fontSize: 20,
-              letterSpacing: "0.14em",
-              color: "#E07020",
-            }}
-          >
-            {kicker}
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <img
+              src={logo}
+              alt=""
+              width={72}
+              height={72}
+              style={{ objectFit: "contain" }}
+            />
           </div>
           <div
             style={{
-              fontSize: 52,
-              lineHeight: 1.15,
-              fontWeight: 600,
-              color: "#FBFAF6",
-              marginTop: 12,
-              maxWidth: 980,
+              display: "flex",
+              flexDirection: "column",
+              width: 980,
+              padding: "28px 32px",
+              background: "rgba(6, 20, 51, 0.82)",
+              borderRadius: 24,
+              border: "1px solid rgba(16, 108, 208, 0.45)",
+              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.18)",
             }}
           >
-            {title}
-          </div>
-          <div style={{ fontSize: 24, color: "#E08A2C", marginTop: 18 }}>
-            Crosby · Huffman · Kingwood · Humble · Lake Houston
+            <div
+              style={{
+                display: "flex",
+                fontFamily: "Barlow",
+                fontSize: 20,
+                fontWeight: 600,
+                letterSpacing: "0.06em",
+                color: "#E07020",
+              }}
+            >
+              {kicker}
+            </div>
+            <div
+              style={{
+                display: "flex",
+                width: 48,
+                height: 1,
+                marginTop: 12,
+                background: "#E08A2C",
+              }}
+            />
+            <div
+              style={{
+                display: "flex",
+                marginTop: 14,
+                fontFamily: "Archivo Black",
+                fontSize: 52,
+                lineHeight: 1.1,
+                letterSpacing: "-0.02em",
+                color: "#FBFAF6",
+              }}
+            >
+              {title}
+            </div>
+            <div
+              style={{
+                display: "flex",
+                marginTop: 16,
+                fontFamily: "Barlow",
+                fontSize: 22,
+                fontWeight: 600,
+                color: "rgba(251,250,246,0.85)",
+              }}
+            >
+              {site.phone} · Crosby · Huffman · Kingwood · Lake Houston
+            </div>
           </div>
         </div>
       </div>
     ),
-    { ...ogSize },
+    { ...ogSize, fonts },
   );
 }
