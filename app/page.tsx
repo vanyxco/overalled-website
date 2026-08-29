@@ -118,7 +118,7 @@ function Difference() {
             alt=""
             width={410}
             height={136}
-            className="h-12 w-auto max-w-[220px] object-contain md:h-14 md:max-w-[240px]"
+            className="h-20 w-auto max-w-[320px] object-contain md:h-28 md:max-w-[420px]"
           />
         </div>
       </div>
