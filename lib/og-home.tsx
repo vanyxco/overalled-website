@@ -2,14 +2,12 @@ import { ImageResponse } from "next/og";
 import { loadOgFonts, ogSize, publicDataUrl } from "@/lib/og-fonts";
 import { site } from "@/lib/site";
 
-export const alt =
-  "Overalled Pressure Washing — Crosby, Huffman, and Lake Houston exterior cleaning";
-export const size = ogSize;
-export const contentType = "image/png";
+export { ogSize };
 
 const SPLIT = 600;
 
-export default async function OpenGraphImage() {
+/** Source for the static homepage share card. ImageResponse 500s on the Worker. */
+export async function homeOgImage() {
   const [fonts, dirty, clean, logo] = await Promise.all([
     loadOgFonts(),
     publicDataUrl("/hero/dirty.jpg"),
@@ -222,6 +220,6 @@ export default async function OpenGraphImage() {
         </div>
       </div>
     ),
-    { ...size, fonts },
+    { ...ogSize, fonts },
   );
 }

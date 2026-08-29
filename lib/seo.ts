@@ -35,7 +35,7 @@ export function pageMetadata({
   keywords?: string[];
 }): Metadata {
   const url = absoluteUrl(path);
-  const ogImage = image ? absoluteUrl(image) : `${site.domain}/opengraph-image`;
+  const ogImage = image ? absoluteUrl(image) : `${site.domain}/og/home.png`;
   const ogAlt = imageAlt ?? title;
 
   return {

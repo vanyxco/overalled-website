@@ -25,7 +25,7 @@ export const metadata: Metadata = pageMetadata({
   title,
   description,
   path: "/work",
-  image: "/work/opengraph-image",
+  image: "/og/work.png",
   imageAlt:
     "Freshly washed brick and windows on a residential home — Overalled Pressure Washing jobs in Lake Houston",
 });

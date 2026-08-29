@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: service.seoTitle,
     description: service.seoDescription,
     path: `/services/${service.slug}`,
-    image: `/services/${service.slug}/opengraph-image`,
+    image: `/og/${service.slug}.png`,
     imageAlt: `${service.heroAlt}. ${service.name} by Overalled Pressure Washing in Crosby and Lake Houston.`,
     keywords: [
       `${service.name} Crosby TX`,
