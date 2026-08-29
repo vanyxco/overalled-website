@@ -113,6 +113,13 @@ function Difference() {
             We treat the property like it is going on the market. Sometimes it
             is.
           </p>
+          <Image
+            src="/brand/logo-wide.png"
+            alt=""
+            width={410}
+            height={136}
+            className="h-12 w-auto max-w-[220px] object-contain md:h-14 md:max-w-[240px]"
+          />
         </div>
       </div>
     </section>
