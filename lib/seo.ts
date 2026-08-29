@@ -35,7 +35,13 @@ export function pageMetadata({
   keywords?: string[];
 }): Metadata {
   const url = absoluteUrl(path);
-  const ogImage = image ? absoluteUrl(image) : `${site.domain}/og/home.png`;
+  const shareUrl =
+    path === "/" || !path
+      ? site.origin
+      : `${site.origin}${path.startsWith("/") ? path : `/${path}`}`;
+  const ogImage = image
+    ? `${site.origin}${image.startsWith("/") ? image : `/${image}`}`
+    : `${site.origin}/og/home.png`;
   const ogAlt = imageAlt ?? title;
 
   return {
@@ -51,7 +57,7 @@ export function pageMetadata({
     openGraph: {
       title,
       description,
-      url,
+      url: shareUrl,
       siteName: site.name,
       locale: "en_US",
       type: "website",

@@ -6,6 +6,8 @@ export const site = {
   phoneE164: "+18328360979",
   email: "overalledpressurewashing@gmail.com",
   domain: "https://overalledpressurewashing.com",
+  // Live origin until the brand domain is pointed at this Worker.
+  origin: "https://overalled-website.proud-cell-ae49.workers.dev",
   facebook: "https://www.facebook.com/profile.php?id=61576297647626",
   owner: "Rocky",
   ownerPhoto: "/about/rocky.webp",
