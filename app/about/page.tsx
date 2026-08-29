@@ -52,27 +52,39 @@ export default function AboutPage() {
       />
       <section className="bg-paper">
         <div className="mx-auto grid max-w-7xl gap-14 px-5 py-20 md:grid-cols-12 md:px-8 md:py-28">
-          <div className="relative aspect-square overflow-hidden rounded-xl bg-canvas md:col-span-5">
-            <Image
-              src="/brand/logo-mark.png"
-              alt={`${site.legalName} logo`}
-              fill
-              className="object-contain p-8"
-            />
-          </div>
+          <figure className="md:col-span-5">
+            <div className="relative">
+              <Image
+                src={site.ownerPhoto}
+                alt={`${site.owner}, owner of ${site.legalName}, in overalls with a pressure washer wand`}
+                width={1024}
+                height={1536}
+                sizes="(min-width: 768px) 42vw, 100vw"
+                className="relative z-10 h-auto w-full bg-transparent"
+                priority
+              />
+              <span
+                aria-hidden
+                className="pointer-events-none absolute right-[14%] bottom-[3%] left-[14%] z-0 h-12 rounded-full bg-navy/25 blur-2xl"
+              />
+            </div>
+            <figcaption className="mt-6">
+              <p className="font-display text-2xl text-navy">{site.owner}</p>
+              <p className="mt-1 text-mute">Owner, {site.name}</p>
+            </figcaption>
+          </figure>
           <div className="md:col-span-6 md:col-start-7 space-y-6 leading-relaxed text-mute">
             <p>
               {site.legalName} is a Texas LLC formed in {site.formed}, based in
               Crosby. We serve Huffman, Lake Houston, Kingwood, Humble,
-              Atascocita, Porter, Dayton, Mont Belvieu, The Woodlands, and
-              northeast Houston. The name is Overalled — with the -ed. We are
-              not Overall Pressure Washing in San Antonio. {site.owner} still
-              runs the work himself — that is why so many reviews use his first
-              name.
+              Atascocita, Porter, New Caney, Dayton, Mont Belvieu, The Woodlands,
+              and northeast Houston. The name is Overalled — with the -ed. We are
+              not Overall Pressure Washing in San Antonio. {site.owner} is the
+              one on the wand — that is why so many reviews use his first name.
             </p>
             <p>
               {site.bio} Quotes are priced from photos and the address. The
-              crew that quotes the job is the crew that washes it.
+              person who quotes the job is the person who washes it.
             </p>
             <p>
               In 2026 the Crosby–Huffman community voted Overalled a Cream of

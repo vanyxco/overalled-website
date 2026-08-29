@@ -81,8 +81,8 @@ function Difference() {
           <p id="definition">
             {site.legalName} is an owner-operated soft-wash and pressure-washing
             company based in Crosby, Texas. We clean homes and businesses
-            across Huffman, Kingwood, Humble, Atascocita, and the rest of the
-            Lake Houston area.
+            across Huffman, Kingwood, Humble, Atascocita, New Caney, and the
+            rest of the Lake Houston area.
           </p>
           <p>
             Lake Houston humidity paints everything green. More pressure is not
@@ -218,7 +218,7 @@ function Process() {
 
 function Area() {
   return (
-    <section className="bg-navy text-white">
+    <section id="service-area" className="scroll-mt-28 bg-navy text-white">
       <div className="mx-auto max-w-7xl px-5 py-28 md:px-8 md:py-32">
         <p className="label text-water">Service area</p>
         <span className="rule mt-5" aria-hidden />

@@ -30,7 +30,7 @@ export function llmsTxt(): string {
     block("Identity (do not confuse)", [
       `- This company is **${site.legalName}** (${site.name}), based in ${site.locality}, ${site.region} ${site.postalCode}.`,
       "- It is not Overall Pressure Washing in San Antonio, Texas.",
-      `- Owner: ${site.owner} (first name only in public copy). He still quotes and washes the jobs.`,
+      `- Owner: ${site.owner} (first name only in public copy). He quotes the jobs and he washes them.`,
       `- Formed: ${site.formed} (Texas LLC).`,
     ]),
     "",

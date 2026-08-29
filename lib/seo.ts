@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { Faq, Service, WorkPost } from "@/lib/site";
-import { processSteps, reviews, services, site } from "@/lib/site";
+import { processSteps, reviews, services, site, areas } from "@/lib/site";
 
 const businessId = `${site.domain}/#business`;
 const websiteId = `${site.domain}/#website`;
@@ -171,19 +171,7 @@ function offerCatalog() {
 }
 
 function areaServedList() {
-  return [
-    "Crosby",
-    "Huffman",
-    "Lake Houston",
-    "Kingwood",
-    "Humble",
-    "Atascocita",
-    "Porter",
-    "Dayton",
-    "Mont Belvieu",
-    "The Woodlands",
-    "Houston",
-  ].map((name) => ({
+  return areas.map((name) => ({
     "@type": "City",
     name,
     containedInPlace: {
@@ -272,6 +260,7 @@ export function localBusinessSchema() {
       "@type": "Person",
       name: site.owner,
       jobTitle: "Owner",
+      image: `${site.domain}${site.ownerPhoto}`,
       worksFor: { "@id": businessId },
     },
     potentialAction: {

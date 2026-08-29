@@ -4,7 +4,7 @@ import { site } from "@/lib/site";
 export const homeFaqs: Faq[] = [
   {
     question: "Where does Overalled Pressure Washing work?",
-    answer: `${site.legalName} serves Crosby, Huffman, Lake Houston, Kingwood, Humble, Atascocita, Porter, Dayton, Mont Belvieu, The Woodlands, and northeast Houston. If you are not sure you are in range, send the address with the quote form.`,
+    answer: `${site.legalName} serves Crosby, Huffman, Lake Houston, Kingwood, Humble, Atascocita, Porter, New Caney, Dayton, Mont Belvieu, The Woodlands, and northeast Houston. If you are not sure you are in range, send the address with the quote form.`,
   },
   {
     question: "Do you pressure wash houses?",
@@ -48,7 +48,7 @@ export const servicesFaqs: Faq[] = [
 export const aboutFaqs: Faq[] = [
   {
     question: "Who owns Overalled Pressure Washing?",
-    answer: `${site.owner} runs ${site.legalName}. Reviews name him because he still does the work. The company is a Texas LLC formed in ${site.formed}.`,
+    answer: `${site.owner} owns and operates ${site.legalName}. He is the one who shows up with the wand. The company is a Texas LLC formed in ${site.formed}.`,
   },
   {
     question: "Why do so many reviews mention Rocky by name?",
@@ -85,7 +85,7 @@ export const areaFaqs: Faq[] = [
   {
     question: "Do you travel to The Woodlands or Dayton?",
     answer:
-      "Yes. The Woodlands is the western edge of the run; Dayton is on the east. Send the address. If a property is too far from Crosby, we say so instead of padding the quote.",
+      "Yes. The Woodlands is the western edge of the run; Dayton is on the east; New Caney and Porter sit north of Huffman. Send the address. If a property is too far from Crosby, we say so instead of padding the quote.",
   },
   {
     question: "Do you only work in Crosby?",

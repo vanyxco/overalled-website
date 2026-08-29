@@ -14,7 +14,7 @@ import {
 import { services, site } from "@/lib/site";
 
 const title = "Pressure Washing Near Crosby, Kingwood & Humble";
-const description = `${site.legalName} serves Crosby, Huffman, Lake Houston, Kingwood, Humble, Atascocita, Porter, Dayton, Mont Belvieu, The Woodlands, and northeast Houston. Soft wash and pressure washing.`;
+const description = `${site.legalName} serves Crosby, Huffman, Lake Houston, Kingwood, Humble, Atascocita, Porter, New Caney, Dayton, Mont Belvieu, The Woodlands, and northeast Houston. Soft wash and pressure washing.`;
 const crumbs = [
   { name: "Home", path: "/" },
   { name: "Service area", path: "/service-area" },
@@ -42,7 +42,7 @@ export default function ServiceAreaPage() {
       <PageHero
         eyebrow="Service area"
         title="Lake Houston and the towns around it."
-        lede={`${site.legalName} is based in Crosby. We run west to The Woodlands, east to Dayton and Mont Belvieu, and through Kingwood, Humble, and Atascocita. If the drive from Crosby is reasonable, send the address.`}
+        lede={`${site.legalName} is based in Crosby. We run west to The Woodlands, east to Dayton and Mont Belvieu, north through Porter and New Caney, and through Kingwood, Humble, and Atascocita. If the drive from Crosby is reasonable, send the address.`}
         crumbs={crumbs}
       />
       <section className="bg-paper">

@@ -42,6 +42,12 @@ export const areaGuides = [
       "Porter is just north of Huffman: larger lots, more fence line, more concrete. Privacy fences and long drives are the typical add-ons to a house wash.",
   },
   {
+    slug: "new-caney",
+    name: "New Caney",
+    blurb:
+      "New Caney sits north of Porter along the 59 corridor — bigger lots, more fence line, and the same Gulf Coast film on siding and concrete. If the drive from Crosby is reasonable, we take the job.",
+  },
+  {
     slug: "dayton",
     name: "Dayton",
     blurb:

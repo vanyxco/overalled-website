@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo_Black, Barlow } from "next/font/google";
+import { Archivo_Black, Barlow, Rowdies } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { JsonLd } from "@/components/json-ld";
@@ -19,6 +19,13 @@ const barlow = Barlow({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-barlow",
+  display: "swap",
+});
+
+const rowdies = Rowdies({
+  subsets: ["latin"],
+  weight: "700",
+  variable: "--font-rowdies",
   display: "swap",
 });
 
@@ -93,7 +100,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en-US"
-      className={`${archivoBlack.variable} ${barlow.variable} h-full antialiased`}
+      className={`${archivoBlack.variable} ${barlow.variable} ${rowdies.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-paper font-body text-ink">
         <JsonLd data={graph([])} />

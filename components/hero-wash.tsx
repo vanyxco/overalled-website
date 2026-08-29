@@ -19,21 +19,19 @@ export function HeroWash() {
       <WashChapter
         id="hero-residential"
         current="residential"
-        kicker="Crosby, Huffman & Lake Houston"
+        kicker="Serving Texas"
+        kickerHref="#service-area"
+        kickerClassName="text-orange"
         heading="h1"
         title={
           <>
-            <span className="whitespace-nowrap">Pressure washing</span>
+            <span className="whitespace-nowrap">
+              <em className="mark-word">Pressure Washing</em>
+            </span>
             <br />
             <span className="whitespace-nowrap">that restores what</span>
             <br />
-            <span className="whitespace-nowrap">
-              the{" "}
-              <em className="script text-[1.15em] text-orange-hot">
-                years
-              </em>{" "}
-              left behind.
-            </span>
+            <span className="whitespace-nowrap">the years left behind.</span>
           </>
         }
         body="Soft wash for houses and roofs. Surface cleaning for concrete. 100% recommend across 37 reviews."
@@ -44,6 +42,8 @@ export function HeroWash() {
         cleanAlt="The same driveway after a professional wash"
         objectClass="object-cover object-[center_70%]"
         priority
+        showTabs
+        showMark
       />
       <ActBreak />
       <WashChapter
@@ -53,11 +53,7 @@ export function HeroWash() {
         heading="h2"
         title={
           <>
-            First impressions get{" "}
-            <em className="script text-[1.15em] text-orange-hot">
-              washed
-            </em>{" "}
-            too.
+            First impressions get washed too.
           </>
         }
         body="Storefronts, banks, and parking approaches — scheduled around your hours and finished before customers arrive."
@@ -67,6 +63,17 @@ export function HeroWash() {
         dirtyAlt="Neglected commercial bank parking lot before washing"
         cleanAlt="The same bank storefront after a professional wash"
         objectClass="object-cover object-[center_55%]"
+        endWords={
+          <div className="text-center">
+            <p className="label text-orange">{site.recommend} recommend</p>
+            <span className="rule mx-auto mt-4" aria-hidden />
+            <p className="display mt-6 text-[clamp(2.4rem,7vw,5rem)] text-white">
+              Trusted
+              <br />
+              Experience
+            </p>
+          </div>
+        }
       />
     </div>
   );
@@ -140,6 +147,8 @@ function WashChapter({
   id,
   current,
   kicker,
+  kickerHref,
+  kickerClassName = "text-water",
   heading: Heading,
   title,
   body,
@@ -150,10 +159,15 @@ function WashChapter({
   cleanAlt,
   objectClass,
   priority = false,
+  showTabs = false,
+  showMark = false,
+  endWords,
 }: {
   id: string;
   current: "residential" | "commercial";
   kicker: string;
+  kickerHref?: string;
+  kickerClassName?: string;
   heading: "h1" | "h2";
   title: ReactNode;
   body: string;
@@ -164,6 +178,9 @@ function WashChapter({
   cleanAlt: string;
   objectClass: string;
   priority?: boolean;
+  showTabs?: boolean;
+  showMark?: boolean;
+  endWords?: ReactNode;
 }) {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
@@ -183,9 +200,12 @@ function WashChapter({
   );
   const washMask = useTransform(clipRight, (value) => {
     const edge = 100 - value;
-    return `linear-gradient(90deg, #000 0%, #000 calc(${edge}% - 36px), transparent calc(${edge}% + 10px))`;
+    return `linear-gradient(90deg, #000 0%, #000 calc(${edge}% - 10vw), transparent calc(${edge}% + 16vw))`;
   });
-  const lineLeft = useTransform(clipRight, (value) => `${100 - value}%`);
+  const lineLeft = useTransform(
+    clipRight,
+    (value) => `calc(${100 - value}% + 24px)`,
+  );
   const copyOpacity = useTransform(
     scrollYProgress,
     [0, 0.4, 0.62, 1],
@@ -218,9 +238,9 @@ function WashChapter({
               className="absolute inset-0"
               style={{
                 maskImage:
-                  "linear-gradient(90deg, #000 0%, #000 calc(55% - 36px), transparent calc(55% + 10px))",
+                  "linear-gradient(90deg, #000 0%, #000 calc(55% - 10vw), transparent calc(55% + 16vw))",
                 WebkitMaskImage:
-                  "linear-gradient(90deg, #000 0%, #000 calc(55% - 36px), transparent calc(55% + 10px))",
+                  "linear-gradient(90deg, #000 0%, #000 calc(55% - 10vw), transparent calc(55% + 16vw))",
               }}
             >
               <Image
@@ -251,11 +271,15 @@ function WashChapter({
             </motion.div>
           )}
 
-          {reduce ? <WashLance left="55%" /> : <WashLance left={lineLeft} />}
+          {reduce ? (
+            <WashLance left="calc(55% + 24px)" />
+          ) : (
+            <WashLance left={lineLeft} />
+          )}
 
           <div className="grain z-10" />
 
-          {reduce ? null : (
+          {!reduce && showMark ? (
             <motion.div
               className="pointer-events-none absolute inset-0 z-15 flex items-center justify-center"
               style={{ opacity: markOpacity }}
@@ -269,19 +293,41 @@ function WashChapter({
                 className="logo-hero h-auto w-[min(72vw,28rem)]"
               />
             </motion.div>
-          )}
+          ) : null}
+
+          {!reduce && endWords ? (
+            <motion.div
+              className="pointer-events-none absolute inset-0 z-15 flex items-center justify-center px-5"
+              style={{ opacity: markOpacity }}
+              aria-hidden
+            >
+              <div className="logo-hero">{endWords}</div>
+            </motion.div>
+          ) : null}
 
           <motion.div
             className="relative z-20 flex h-full flex-col items-center justify-center px-5 text-center text-white"
             style={reduce ? undefined : { opacity: copyOpacity, y: copyY }}
           >
-            <ActTabs current={current} />
+            {showTabs ? <ActTabs current={current} /> : null}
             <div className="hero-glass w-full max-w-3xl px-5 py-6 md:px-10 md:py-9">
               <p
                 id={Heading === "h1" ? "hero-kicker" : undefined}
-                className="label text-water"
+                className="label"
               >
-                {kicker}
+                {kickerHref ? (
+                  <a
+                    href={kickerHref}
+                    className={cn(
+                      kickerClassName,
+                      "inline-block py-1 underline decoration-current/40 underline-offset-[0.35em] transition-colors hover:text-orange-hot hover:decoration-orange-hot",
+                    )}
+                  >
+                    {kicker}
+                  </a>
+                ) : (
+                  <span className={kickerClassName}>{kicker}</span>
+                )}
               </p>
               <Heading className="display mt-5 text-[clamp(1.7rem,6.8vw,3.75rem)]">
                 {title}

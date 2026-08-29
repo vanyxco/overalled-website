@@ -39,6 +39,7 @@ export function WashLance({
 }) {
   const inner = (
     <>
+      <span className="wash-glow" />
       <span className="wash-jet" />
       <span className="wash-stream" />
       <span className="pointer-events-none absolute inset-y-0 left-0 w-32 overflow-visible">
@@ -59,7 +60,7 @@ export function WashLance({
           />
         ))}
       </span>
-      <span className="pointer-events-none absolute top-[72%] right-full flex origin-right -translate-y-1/2 items-center -rotate-12">
+      <span className="pointer-events-none absolute top-[72%] right-[calc(100%+2.25rem)] flex origin-right -translate-y-1/2 items-center -rotate-12">
         <WandMark />
         <span className="wash-bloom" />
       </span>

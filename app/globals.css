@@ -41,7 +41,7 @@
   --font-display: var(--font-archivo-black);
   --font-label: var(--font-barlow);
   --font-body: var(--font-barlow);
-  --font-script: var(--font-archivo-black);
+  --font-script: var(--font-rowdies);
   --radius-lg: var(--radius-surface);
   --radius-xl: var(--radius-surface);
   --radius-2xl: var(--radius-surface);
@@ -104,6 +104,15 @@ body {
     letter-spacing: -0.02em;
     line-height: 1.1;
     color: var(--orange-hot);
+  }
+
+  .mark-word {
+    font-family: var(--font-rowdies), var(--font-archivo-black), sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    color: var(--water);
   }
 
   .logo-hero {
@@ -172,48 +181,63 @@ body {
     border-radius: var(--radius-control);
   }
 
+  .wash-glow {
+    position: absolute;
+    inset: -6% auto -6% -12vw;
+    width: 24vw;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgb(255 255 255 / 0.05) 30%,
+      rgb(255 255 255 / 0.16) 50%,
+      rgb(255 255 255 / 0.05) 70%,
+      transparent 100%
+    );
+    filter: blur(28px);
+  }
+
   .wash-jet {
     position: absolute;
     top: 72%;
     left: -6px;
-    width: 13rem;
-    height: 8.5rem;
+    width: 16rem;
+    height: 11rem;
     translate: 0 -50%;
     rotate: 9deg;
     transform-origin: left center;
     background: radial-gradient(
       ellipse 95% 70% at 0% 50%,
-      rgb(255 255 255 / 0.8) 0%,
-      rgb(236 246 255 / 0.4) 28%,
-      rgb(255 255 255 / 0.12) 52%,
-      transparent 72%
+      rgb(255 255 255 / 0.55) 0%,
+      rgb(236 246 255 / 0.22) 32%,
+      rgb(255 255 255 / 0.07) 58%,
+      transparent 78%
     );
-    filter: blur(6px);
+    filter: blur(10px);
   }
 
   .wash-stream {
     position: absolute;
     top: 72%;
     left: -2px;
-    width: 6.5rem;
-    height: 12px;
+    width: 9rem;
+    height: 18px;
     translate: 0 -50%;
     rotate: 9deg;
     transform-origin: left center;
     border-radius: 999px;
     background: linear-gradient(
       90deg,
-      rgb(255 255 255 / 0.95) 0%,
-      rgb(236 246 255 / 0.5) 45%,
+      rgb(255 255 255 / 0.7) 0%,
+      rgb(236 246 255 / 0.28) 45%,
       transparent 100%
     );
-    filter: blur(2px);
+    filter: blur(4px);
   }
 
   .wash-bloom {
     position: absolute;
     top: 50%;
-    right: -1.75rem;
+    right: -1rem;
     width: 4.5rem;
     height: 1.5rem;
     translate: 0 -50%;
