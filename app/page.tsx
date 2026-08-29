@@ -118,7 +118,8 @@ function Difference() {
             alt=""
             width={410}
             height={136}
-            className="h-20 w-auto max-w-[320px] object-contain md:h-28 md:max-w-[420px]"
+            sizes="(min-width: 768px) 42vw, calc(100vw - 2.5rem)"
+            className="h-auto w-full object-contain"
           />
         </div>
       </div>
