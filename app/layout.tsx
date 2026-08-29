@@ -1,9 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import {
-  Atkinson_Hyperlegible_Next,
-  Fraunces,
-  Great_Vibes,
-} from "next/font/google";
+import { Archivo_Black, Barlow } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { JsonLd } from "@/components/json-ld";
@@ -12,28 +8,22 @@ import { defaultDescription, defaultTitle, graph } from "@/lib/seo";
 import { telHref } from "@/lib/utils";
 import "./globals.css";
 
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
-  display: "swap",
-  axes: ["opsz", "SOFT"],
-});
-
-const atkinson = Atkinson_Hyperlegible_Next({
-  subsets: ["latin"],
-  variable: "--font-atkinson",
-  display: "swap",
-});
-
-const script = Great_Vibes({
+const archivoBlack = Archivo_Black({
   subsets: ["latin"],
   weight: "400",
-  variable: "--font-script",
+  variable: "--font-archivo-black",
+  display: "swap",
+});
+
+const barlow = Barlow({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-barlow",
   display: "swap",
 });
 
 export const viewport: Viewport = {
-  themeColor: "#071525",
+  themeColor: "#061433",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -90,7 +80,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
   },
-  icons: { icon: "/brand/logo.jpg", apple: "/brand/logo.jpg" },
+  icons: { icon: "/brand/logo-mark.png", apple: "/brand/logo-mark.png" },
   other: {
     "geo.region": "US-TX",
     "geo.placename": site.locality,
@@ -103,13 +93,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en-US"
-      className={`${fraunces.variable} ${atkinson.variable} ${script.variable} h-full antialiased`}
+      className={`${archivoBlack.variable} ${barlow.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-paper font-body text-ink">
         <JsonLd data={graph([])} />
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-80 focus:bg-orange focus:px-4 focus:py-2 focus:text-white"
+          className="btn sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-80 focus:bg-blue focus:px-4 focus:py-2 focus:text-white"
         >
           Skip to content
         </a>
@@ -118,7 +108,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteFooter />
         <a
           href={telHref(site.phone)}
-          className="label fixed right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-50 bg-orange px-6 py-3.5 text-lg text-white md:hidden"
+          className="btn label fixed right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-50 bg-blue px-6 py-3.5 text-lg text-white md:hidden"
         >
           Call {site.phone}
         </a>

@@ -52,12 +52,12 @@ export default function AboutPage() {
       />
       <section className="bg-paper">
         <div className="mx-auto grid max-w-7xl gap-14 px-5 py-20 md:grid-cols-12 md:px-8 md:py-28">
-          <div className="relative aspect-4/5 border border-line bg-canvas md:col-span-5">
+          <div className="relative aspect-square overflow-hidden rounded-xl bg-canvas md:col-span-5">
             <Image
-              src="/brand/logo.jpg"
+              src="/brand/logo-mark.png"
               alt={`${site.legalName} logo`}
               fill
-              className="object-contain bg-canvas p-10"
+              className="object-contain p-8"
             />
           </div>
           <div className="md:col-span-6 md:col-start-7 space-y-6 leading-relaxed text-mute">

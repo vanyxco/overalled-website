@@ -79,9 +79,12 @@ export default function ServicesPage() {
           </p>
         </div>
         <div className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
-          <ul className="grid gap-px bg-line md:grid-cols-2">
+          <ul className="grid gap-6 md:grid-cols-2 md:gap-8">
             {services.map((service) => (
-              <li key={service.slug} className="bg-paper">
+              <li
+                key={service.slug}
+                className="overflow-hidden rounded-xl border border-line bg-paper"
+              >
                 <Link href={`/services/${service.slug}`} className="group block">
                   <WashReveal className="aspect-16/10">
                     <Image

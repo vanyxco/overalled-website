@@ -1,14 +1,23 @@
+import Image from "next/image";
 import Link from "next/link";
 import { areas, nav, site } from "@/lib/site";
 import { telHref } from "@/lib/utils";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-brass/40 bg-navy text-white">
+    <footer className="border-t border-orange/40 bg-navy text-white">
       <div className="mx-auto grid max-w-7xl gap-16 px-5 py-20 md:grid-cols-12 md:px-8 md:py-24">
         <div className="md:col-span-5">
-          <p className="script text-5xl text-orange-hot md:text-6xl">Overalled</p>
-          <p className="label mt-3 text-white/85">Pressure Washing LLC</p>
+          <div className="w-fit">
+            <Image
+              src="/brand/logo-wide.png"
+              alt="Overalled Pressure Washing"
+              width={410}
+              height={136}
+              className="h-14 w-auto max-w-[280px] object-contain md:h-16 md:max-w-[320px]"
+            />
+          </div>
+          <p className="label mt-5 text-white/85">Pressure Washing LLC</p>
           <p className="mt-8 max-w-sm leading-relaxed text-white/85">
             {site.bio}
           </p>

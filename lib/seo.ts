@@ -4,7 +4,7 @@ import { processSteps, reviews, services, site } from "@/lib/site";
 
 const businessId = `${site.domain}/#business`;
 const websiteId = `${site.domain}/#website`;
-const logoUrl = `${site.domain}/brand/logo.jpg`;
+const logoUrl = `${site.domain}/brand/logo-mark.png`;
 
 export const defaultTitle =
   "Overalled Pressure Washing | Crosby, Huffman & Lake Houston";

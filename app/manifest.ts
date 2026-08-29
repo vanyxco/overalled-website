@@ -9,14 +9,14 @@ export default function manifest(): MetadataRoute.Manifest {
     description: defaultDescription,
     start_url: "/",
     display: "browser",
-    background_color: "#071525",
-    theme_color: "#071525",
+    background_color: "#061433",
+    theme_color: "#061433",
     lang: "en-US",
     icons: [
       {
-        src: "/brand/logo.jpg",
+        src: "/brand/logo-mark.png",
         sizes: "any",
-        type: "image/jpeg",
+        type: "image/png",
       },
     ],
   };

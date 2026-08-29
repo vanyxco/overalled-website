@@ -26,8 +26,8 @@ export async function photoOgImage({
           width: "100%",
           height: "100%",
           position: "relative",
-          background: "#071525",
-          fontFamily: "Georgia, serif",
+          background: "#061433",
+          fontFamily: "Arial Black, Impact, Helvetica, sans-serif",
         }}
       >
         <img
@@ -51,7 +51,7 @@ export async function photoOgImage({
             height: "100%",
             padding: 56,
             background:
-              "linear-gradient(to top, #071525 0%, rgba(7,21,37,0.55) 42%, rgba(7,21,37,0.2) 100%)",
+              "linear-gradient(to top, #061433 0%, rgba(6,20,51,0.55) 42%, rgba(6,20,51,0.2) 100%)",
           }}
         >
           <div
@@ -75,7 +75,7 @@ export async function photoOgImage({
           >
             {title}
           </div>
-          <div style={{ fontSize: 24, color: "#C4A35A", marginTop: 18 }}>
+          <div style={{ fontSize: 24, color: "#E08A2C", marginTop: 18 }}>
             Crosby · Huffman · Kingwood · Humble · Lake Houston
           </div>
         </div>

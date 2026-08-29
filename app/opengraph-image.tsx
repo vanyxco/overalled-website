@@ -8,8 +8,8 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function OpenGraphImage() {
-  const logo = await readFile(join(process.cwd(), "public/brand/logo.jpg"));
-  const src = `data:image/jpeg;base64,${logo.toString("base64")}`;
+  const logo = await readFile(join(process.cwd(), "public/brand/logo-mark.png"));
+  const src = `data:image/png;base64,${logo.toString("base64")}`;
 
   return new ImageResponse(
     (
@@ -20,22 +20,24 @@ export default async function OpenGraphImage() {
           justifyContent: "space-between",
           width: "100%",
           height: "100%",
-          background: "#071525",
+          background: "#061433",
           color: "#FBFAF6",
           padding: 72,
-          fontFamily: "Georgia, serif",
+          fontFamily: "Arial Black, Impact, Helvetica, sans-serif",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
           <img
             src={src}
             alt=""
-            width={96}
-            height={96}
-            style={{ objectFit: "cover" }}
+            width={120}
+            height={120}
+            style={{
+              objectFit: "contain",
+            }}
           />
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ fontSize: 42, color: "#F4A261" }}>Overalled</div>
+            <div style={{ fontSize: 42, color: "#FAA437" }}>OVERALLED</div>
             <div
               style={{
                 fontSize: 22,
@@ -55,10 +57,10 @@ export default async function OpenGraphImage() {
             maxWidth: 900,
           }}
         >
-          <div style={{ fontSize: 56, lineHeight: 1.15, fontWeight: 600 }}>
+          <div style={{ fontSize: 56, lineHeight: 1.15, fontWeight: 700 }}>
             Soft wash the house. Surface-clean the drive.
           </div>
-          <div style={{ fontSize: 28, color: "#C4A35A" }}>
+          <div style={{ fontSize: 28, color: "#E08A2C" }}>
             Crosby · Huffman · Kingwood · Humble · Lake Houston
           </div>
         </div>

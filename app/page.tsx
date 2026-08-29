@@ -131,7 +131,7 @@ function Services() {
             <li key={service.slug} className="border-b border-white/15">
               <Link
                 href={`/services/${service.slug}`}
-                className="service-row group grid grid-cols-[auto_1fr] items-baseline gap-4 py-6 transition-colors hover:bg-white/5 md:grid-cols-[4.5rem_1fr_auto_auto] md:gap-6 md:px-2 md:py-7"
+                className="service-row group grid grid-cols-[auto_1fr] items-baseline gap-4 rounded-xl py-6 transition-colors hover:bg-white/5 md:grid-cols-[4.5rem_1fr_auto_auto] md:gap-6 md:px-3 md:py-7"
               >
                 <span className="script text-3xl text-orange-hot">
                   0{index + 1}
@@ -230,7 +230,7 @@ function Area() {
             <li key={area.slug}>
               <Link
                 href={`/service-area#${area.slug}`}
-                className="label inline-block border border-brass/35 px-4 py-2.5 text-white/90 transition-colors hover:border-brass hover:text-white"
+                className="btn label inline-block border border-brass/35 px-4 py-2.5 text-white/90 transition-colors hover:border-brass hover:text-white"
               >
                 {area.name}, TX
               </Link>

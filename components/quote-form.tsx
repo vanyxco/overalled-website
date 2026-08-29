@@ -20,7 +20,7 @@ export function QuoteForm() {
 
   if (state.status === "success") {
     return (
-      <div className="border border-brass/50 bg-canvas px-8 py-12">
+      <div className="rounded-xl border border-brass/50 bg-canvas px-8 py-12">
         <p className="label text-orange">Sent</p>
         <p className="display mt-3 text-3xl text-navy">Request received.</p>
         <p className="mt-3 max-w-md leading-relaxed text-mute">
@@ -31,7 +31,7 @@ export function QuoteForm() {
   }
 
   return (
-    <form action={action} className="grid gap-6 border border-line bg-paper/80 px-6 py-8 md:px-8 md:py-10">
+    <form action={action} className="grid gap-6 rounded-xl border border-line bg-paper/80 px-6 py-8 md:px-8 md:py-10">
       <p className="sr-only" aria-live="polite">
         {state.message}
       </p>
@@ -120,7 +120,7 @@ export function QuoteForm() {
         type="submit"
         disabled={pending}
         className={cn(
-          "label bg-orange px-8 py-4 text-lg text-white transition-colors hover:bg-orange-hot",
+          "btn label bg-blue px-8 py-4 text-lg text-white transition-colors hover:bg-navy-2",
           pending && "opacity-70",
         )}
       >

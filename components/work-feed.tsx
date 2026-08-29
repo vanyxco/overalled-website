@@ -57,7 +57,7 @@ export function WorkFeed({
         <div className="mt-14">
           <button
             type="button"
-            className="label min-h-11 border border-navy px-8 py-4 text-navy transition-colors hover:bg-navy hover:text-white"
+            className="btn label min-h-11 border border-navy px-8 py-4 text-navy transition-colors hover:bg-navy hover:text-white"
             onClick={() => {
               startTransition(() => {
                 setVisibleCount((count) =>
@@ -91,11 +91,11 @@ function FeedHeader() {
     <div className="flex flex-wrap items-center justify-between gap-6 border-b border-line pb-8">
       <div className="flex items-center gap-4">
         <Image
-          src="/brand/logo.jpg"
+          src="/brand/logo-mark.png"
           alt=""
           width={56}
           height={56}
-          className="size-14 object-cover"
+          className="size-14 rounded-full object-contain"
         />
         <div>
           <p className="font-medium text-navy">{site.legalName}</p>
@@ -107,7 +107,7 @@ function FeedHeader() {
       </div>
       <a
         href={site.facebook}
-        className="label inline-flex min-h-11 items-center bg-orange px-8 py-4 text-white transition-colors hover:bg-orange-hot"
+        className="btn label inline-flex min-h-11 items-center bg-blue px-8 py-4 text-white transition-colors hover:bg-navy-2"
       >
         Follow on Facebook
       </a>
@@ -138,11 +138,11 @@ function WorkPostCard({
     <article>
       <header className="flex items-center gap-4">
         <Image
-          src="/brand/logo.jpg"
+          src="/brand/logo-mark.png"
           alt=""
           width={40}
           height={40}
-          className="size-10 object-cover"
+          className="size-10 rounded-full object-contain"
         />
         <div>
           <p className="font-medium text-navy">{site.legalName}</p>
@@ -153,7 +153,7 @@ function WorkPostCard({
         <button
           type="button"
           onClick={() => onOpen(0)}
-          className="group relative block aspect-4/3 w-full overflow-hidden bg-canvas text-left"
+          className="group relative block aspect-4/3 w-full overflow-hidden rounded-xl bg-canvas text-left"
           aria-label={`View photo: ${cover.alt}`}
         >
           <WashReveal fill>
@@ -189,7 +189,7 @@ function WorkPostCard({
                   <button
                     type="button"
                     onClick={() => onOpen(photoIndex)}
-                    className="group relative block aspect-square w-full overflow-hidden bg-canvas"
+                    className="group relative block aspect-square w-full overflow-hidden rounded-xl bg-canvas"
                     aria-label={
                       isLast
                         ? `View photo: ${photo.alt}. ${overflow} more photos`
@@ -342,7 +342,7 @@ function WorkLightbox({
           </div>
         </div>
         <div className="relative mx-auto w-full max-w-6xl flex-1 px-5 md:px-8">
-          <div className="relative aspect-4/3 w-full overflow-hidden bg-navy-2 md:aspect-16/10">
+          <div className="relative aspect-4/3 w-full overflow-hidden rounded-xl bg-navy-2 md:aspect-16/10">
             <Image
               src={photo.src}
               alt={photo.alt}
