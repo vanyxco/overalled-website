@@ -54,7 +54,7 @@ export function WashLance({
                     animationDelay: particle.delay,
                     animationDuration: particle.duration,
                     "--drift": `${particle.drift}px`,
-                  } satisfies ParticleStyle
+                  } as ParticleStyle
                 }
               />
             ))}
