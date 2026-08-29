@@ -40,10 +40,10 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
+        "fixed inset-x-0 top-0 z-50 pt-[env(safe-area-inset-top)] transition-colors duration-300",
         scrolled || open
           ? "border-b border-brass/40 bg-navy/92 text-white backdrop-blur-md"
-          : "border-b border-transparent bg-transparent text-white",
+          : "border-b border-transparent bg-linear-to-b from-navy/80 via-navy/40 to-transparent text-white",
       )}
     >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-5 md:h-24 md:px-8">
@@ -99,7 +99,7 @@ export function SiteHeader() {
 
         <button
           type="button"
-          className="label text-lg lg:hidden"
+          className="label min-h-11 min-w-11 text-lg lg:hidden"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
         >

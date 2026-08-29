@@ -36,6 +36,7 @@ export const viewport: Viewport = {
   themeColor: "#071525",
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
 };
 
 export const metadata: Metadata = {
@@ -117,7 +118,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteFooter />
         <a
           href={telHref(site.phone)}
-          className="label fixed right-4 bottom-4 z-50 bg-orange px-6 py-3.5 text-lg text-white md:hidden"
+          className="label fixed right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-50 bg-orange px-6 py-3.5 text-lg text-white md:hidden"
         >
           Call {site.phone}
         </a>

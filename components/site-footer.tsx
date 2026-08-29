@@ -57,7 +57,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-6 text-white/80 md:flex-row md:items-center md:justify-between md:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-6 pb-24 text-white/80 md:flex-row md:items-center md:justify-between md:px-8 md:pb-6">
           <p>
             © {new Date().getFullYear()} {site.legalName}. {site.award}.
           </p>

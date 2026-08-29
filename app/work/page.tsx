@@ -51,12 +51,12 @@ export default function WorkPage() {
       />
       <PageHero
         eyebrow="Work"
-        title="Jobs as posted on Facebook."
+        title="Jobs around Lake Houston."
         lede="Newest first, with the captions from the page. Open a photo for the rest of the album, or jump to the post on Facebook."
         crumbs={crumbs}
       />
       <section className="bg-paper">
-        <div className="mx-auto max-w-2xl px-5 py-20 md:px-8 md:py-28">
+        <div className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
           <WorkFeed posts={workPosts} variant="feed" />
           <a
             href={site.facebook}

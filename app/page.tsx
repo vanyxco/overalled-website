@@ -131,7 +131,7 @@ function Services() {
             <li key={service.slug} className="border-b border-white/15">
               <Link
                 href={`/services/${service.slug}`}
-                className="service-row group grid grid-cols-[auto_1fr_auto] items-baseline gap-6 py-7 transition-colors hover:bg-white/5 md:grid-cols-[4.5rem_1fr_auto_auto] md:px-2"
+                className="service-row group grid grid-cols-[auto_1fr] items-baseline gap-4 py-6 transition-colors hover:bg-white/5 md:grid-cols-[4.5rem_1fr_auto_auto] md:gap-6 md:px-2 md:py-7"
               >
                 <span className="script text-3xl text-orange-hot">
                   0{index + 1}
@@ -147,7 +147,7 @@ function Services() {
                 <span className="label hidden text-water md:inline">
                   {service.method}
                 </span>
-                <span className="label text-orange-hot transition-transform duration-500 group-hover:translate-x-1">
+                <span className="label hidden text-orange-hot transition-transform duration-500 group-hover:translate-x-1 md:inline">
                   View
                 </span>
               </Link>
@@ -166,7 +166,7 @@ function Work() {
         <p className="label text-orange">Work</p>
         <span className="rule mt-5" aria-hidden />
         <h2 className="display mt-6 max-w-2xl text-4xl text-navy md:text-5xl">
-          Recent jobs from the Facebook page.
+          Recent jobs around Lake Houston.
         </h2>
         <p className="mt-5 max-w-2xl leading-relaxed text-mute">
           Photos and captions as posted. Houses, driveways, and commercial

@@ -37,11 +37,7 @@ export function WorkFeed({
         Showing {visible.length} of {posts.length} posts
       </p>
       <ol
-        className={
-          variant === "home"
-            ? "mt-16 grid gap-10 md:grid-cols-2 md:gap-x-12 md:gap-y-16"
-            : "mt-12 space-y-16"
-        }
+        className="mt-12 grid gap-10 md:mt-16 md:grid-cols-2 md:gap-x-12 md:gap-y-16"
       >
         {visible.map((post, postIndex) => (
           <li key={post.id}>
@@ -49,11 +45,7 @@ export function WorkFeed({
               post={post}
               priority={postIndex < 2}
               showThumbs={variant === "feed"}
-              sizes={
-                variant === "home"
-                  ? "(min-width: 768px) 50vw, 100vw"
-                  : "(min-width: 768px) 672px, 100vw"
-              }
+              sizes="(min-width: 768px) 50vw, 100vw"
               onOpen={(photoIndex) =>
                 setOpen({ post: postIndex, photo: photoIndex })
               }

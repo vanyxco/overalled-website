@@ -43,7 +43,9 @@ Floor: body 18px, UI 16px, buttons 18px.
 
 - Base 4px. Section padding 96 desktop / 64 mobile.
 - Radius: 0 (knives), 4 (inputs), 999 (pills). Prefer sharp over round.
-- Shadows: none on navy. Light cards use a 1px `line` edge, not a drop shadow.
+- Shadows: none on navy cards. Light cards use a 1px `line` edge, not a drop shadow.
+- Type on photography: navy scrim plus `--shadow-hero-type` (tight navy text-shadow). This is readability, not a card drop-shadow.
+- Hero wash edge: a pressure-washer lance sits left of the water line, nozzle aimed at the line, spray traveling with it. Reduced motion: static split, no lance travel.
 - Hairline: 1px brass (`#C4A35A`) as the only metal — under eyebrows, over the footer, never as a fat bar.
 - Image hover: scale 1.04 over 700ms `cubic-bezier(0.22, 1, 0.36, 1)`.
 - Form fields: bottom border only, transparent fill.
@@ -58,5 +60,5 @@ Floor: body 18px, UI 16px, buttons 18px.
 - Never use Inter, purple gradients, or generic contractor yellow-on-blue templates.
 - Photography > illustration except the existing logo mascot.
 - If type looks “designed” but you have to squint, it is wrong.
-- Finish is expensive, not loud: brass hairlines, underline fields, slow image scale, no drop shadows on navy, no boxed reviews.
+- Finish is expensive, not loud: brass hairlines, underline fields, slow image scale, no drop-shadow cards on navy, no boxed reviews. Hero type may use `--shadow-hero-type`.
 - Nav hover is a brass underline from the left. Primary fill is orange; secondary is a 1px white/navy edge.
